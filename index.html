@@ -209,7 +209,7 @@
 
         <section class="guide-block">
           <h2>Pitch Model Metrics</h2>
-          <p class="pp-pool">Pitching+ and Stuff+ have significant predictive power. Both forecast a pitcher's next-season ERA better than his current ERA does. Shown below is the correlation of Pitching+ and ERA for predicting the following season's ERA. A negative sign means the two move in opposite directions (a higher Pitching+/Stuff+ corresponds to a lower ERA). This correlation only includes pitchers (both SP and RP) who threw at least 75 innings in back-to-back seasons from 2021-2026.</p>
+          <p class="pp-pool">Pitching+ and Stuff+ have significant predictive power. Both forecast a pitcher's next season ERA better than his current ERA does. Shown below is the correlation of Pitching+ and ERA for predicting the following seasons ERA. This correlation only includes pitchers who had at least 75 IP in back to back seasons from 2021-2026.</p>
           <table class="def-tbl">
             <thead><tr><th>Metric</th><th>Definition</th></tr></thead>
             <tbody>
@@ -221,7 +221,7 @@
                 <th>Stuff+</th>
                 <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div><div class="corr">Stuff+ &rarr; ERA: <b>r = &minus;.40</b> &nbsp;vs&nbsp; ERA &rarr; ERA: r = .25</div></td>
               </tr>
-              <tr class="def-lead"><td colspan="2">Each grade below comes from the same models as Pitching+, but focuses on a single aspect of pitching rather than overall run value. A higher grade is always better.</td></tr>
+              <tr class="def-lead"><td colspan="2">Each metric below is derived from the same models as Pitching+. However, they focus on a single aspect of pitching as opposed to overall run value. A higher score always indicates higher pitching ability.</td></tr>
               <tr>
                 <th>K+</th>
                 <td>A pitcher's ability to generate strikeouts.</td>
