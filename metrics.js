@@ -47,7 +47,7 @@ const DESC = {
   kplus: "The pitcher's projected strikeout ability.",
   bbplus: "The pitcher's projected walk-prevention ability. A higher grade means fewer walks.",
   whiffplus: "The swing-and-miss rate the pitcher's pitches are expected to generate.",
-  missplus: "When hitters swing, how often they're expected to miss. The pitcher's pure projected bat-missing ability.",
+  missplus: "When hitters swing, how often they're expected to miss: the pitcher's pure projected bat-missing ability.",
   csplus: "How well the pitcher is expected to steal called strikes that hitters are projected to take.",
   hardhitplus: "How well the pitcher is expected to suppress hard contact (95+ mph exit velocity).",
   veryhardhitplus: "How well the pitcher is expected to suppress crushed contact (100+ mph exit velocity).",
