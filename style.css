@@ -374,17 +374,33 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .def-tbl tr.def-lead td{padding:13px 16px;color:var(--muted);font-size:13px;
   line-height:1.5;background:rgba(255,255,255,.02);border-bottom:1px solid var(--line)}
 .corr-note{font-size:13px;line-height:1.6;color:var(--muted);margin:0 0 18px}
-/* Predictive Power bars */
-.pp{margin:0 0 16px}
-.pp-title{font-size:13.5px;color:var(--muted);margin:0 0 6px}
-.pp-title b{color:var(--ink);font-weight:700}
-.pp-row{display:grid;grid-template-columns:164px 1fr 54px;align-items:center;gap:11px;margin:5px 0}
-.pp-tag{font-size:11px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pp-track{height:13px;background:#1b2431;border-radius:7px;overflow:hidden}
-.pp-fill{display:block;height:100%;background:#3a4a5f;border-radius:7px}
-.pp-fill.win{background:#33c46e}
-.pp-r{font-size:13px;font-weight:700;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
-.pp-r.win{color:#33c46e;font-size:15px}
+/* Predictive Power dot plot */
+.dp-lead{font-size:14.5px;line-height:1.65;color:#aeb9c6;margin:0 0 24px;max-width:660px}
+.dp{max-width:680px}
+.dp-legend{display:flex;flex-wrap:wrap;gap:22px;margin:0 0 22px}
+.dp-legend span{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.dp-legend i{width:10px;height:10px;border-radius:50%;flex:none}
+.dp-legend i.metric{background:#4d9be6}
+.dp-legend i.stat{background:#8593a6}
+.dp-rows{display:flex;flex-direction:column;gap:17px}
+.dp-row{display:grid;grid-template-columns:148px 1fr 58px;align-items:center;gap:16px}
+.dp-name{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.15}
+.dp-name em{display:block;font-style:normal;font-weight:400;font-size:11px;color:var(--muted);margin-top:2px}
+.dp-track{position:relative;height:14px}
+.dp-track::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line)}
+.dp-seg{position:absolute;top:50%;height:3px;transform:translateY(-50%);border-radius:2px;background:rgba(255,255,255,.12)}
+.dp-seg.win{background:rgba(77,155,230,.5)}
+.dp-dot{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 2.5px var(--bg)}
+.dp-dot.metric{background:#4d9be6}
+.dp-dot.stat{background:#8593a6}
+.dp-vals{display:flex;flex-direction:column;align-items:flex-end;gap:1px;line-height:1.15;font-variant-numeric:tabular-nums}
+.dp-vals b.metric{color:#4d9be6;font-size:14px;font-weight:700}
+.dp-vals b.stat{color:#8593a6;font-size:11.5px;font-weight:600}
+.dp-axis{display:grid;grid-template-columns:148px 1fr 58px;gap:16px;margin-top:14px}
+.dp-scale{grid-column:2;position:relative;height:14px}
+.dp-scale span{position:absolute;top:0;font-size:10.5px;color:var(--muted);transform:translateX(-50%)}
+.dp-foot{font-size:12.5px;line-height:1.6;color:var(--muted);margin:24px 0 0;max-width:660px}
+.dp-method{font-size:11.5px;margin-top:12px;color:#6f7d8f}
 
 /* Definition tables: metric | definition */
 .def-tbl{width:100%;border-collapse:collapse;border:1px solid var(--line);
