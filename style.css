@@ -365,8 +365,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 #m-tip.on{opacity:1}
 
 /* ── Guide tab ───────────────────────────────────── */
-#tab-guide{grid-template-columns:1fr}      /* no sidebar */
-#guide{min-width:0;overflow-y:auto;background:var(--bg)}
+#tab-guide,#tab-predpower{grid-template-columns:1fr}      /* no sidebar */
+#guide,#predpower{min-width:0;overflow-y:auto;background:var(--bg)}
 .guide-doc{max-width:900px;margin:0 auto;padding:34px 30px 90px;color:var(--ink)}
 .guide-title{font-size:28px;font-weight:800;letter-spacing:-.4px;margin:0 0 26px}
 .guide-block{margin:0 0 34px}
@@ -384,7 +384,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .pp-fill{display:block;height:100%;background:#3a4a5f;border-radius:7px}
 .pp-fill.win{background:#33c46e}
 .pp-r{font-size:13px;font-weight:700;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
-.pp-r::before{content:"r ";font-size:9px;color:var(--dim);font-weight:600}
 .pp-r.win{color:#33c46e;font-size:15px}
 
 /* Definition tables: metric | definition */
@@ -479,7 +478,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   .m-row .val{display:none}
 
   /* Guide: full-width reading column, let the page scroll */
-  #guide{overflow:visible;height:auto}
+  #guide,#predpower{overflow:visible;height:auto}
   .guide-doc{padding:22px 14px 70px}
   .guide-title{font-size:24px}
   .def-tbl tbody th{white-space:normal;width:34%;padding:12px;font-size:13px}
