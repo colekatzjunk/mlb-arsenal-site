@@ -324,7 +324,7 @@ let scrub = 0;        // 0..1
 let playing = false;
 let speedMult = 0.1;  // default 0.1× (slow-mo)
 let showTunnel = true;    // ring dots at the 35 ft tunnel point
-let showTrails = false;   // pitch tracking lines (trails) — off by default
+let showTrails = true;    // pitch tracking lines (trails) — on by default
 
 function applyLayers() { setScrub(scrub); }   // setScrub owns all per-object visibility
 
@@ -424,6 +424,9 @@ const VIEWS = {
   // Umpire: behind the plate looking up the middle at the pitcher, zone close in
   // the foreground.
   ump: { pos: [0, 5.2, -9], tgt: [0, 3.0, 40], fov: 54 },
+  // Side: off the third-base line looking across the flight path — shows vertical
+  // break and how the pitches split up/down from the tunnel point to the plate.
+  side: { pos: [-56, 4, 25], tgt: [0, 3.6, 24], fov: 34 },
 };
 function setView(name) {
   const v = VIEWS[name]; if (!v) return;
@@ -434,10 +437,27 @@ function setView(name) {
   controls.update();
   document.querySelectorAll('#views button').forEach((b) =>
     b.classList.toggle('on', b.dataset.view === name));
+  // Side view wants the full width — auto-hide the card and collapse the leaderboard.
+  if (window.innerWidth > 820) { setCard(name === 'side'); setSidebar(name === 'side'); }
 }
 document.querySelectorAll('#views button').forEach((b) => {
   b.onclick = () => setView(b.dataset.view);
 });
+
+// Deception card show/hide + leaderboard collapse (desktop panels).
+function setCard(hidden) {
+  $('metrics').classList.toggle('hidden', hidden);
+  $('card-show').classList.toggle('on', hidden);
+}
+function setSidebar(collapsed) {
+  document.getElementById('tab-tunnels').classList.toggle('no-sidebar', collapsed);
+  $('sb-toggle').textContent = collapsed ? '»' : '«';
+  requestAnimationFrame(resize);
+}
+$('card-hide').onclick = () => setCard(true);
+$('card-show').onclick = () => setCard(false);
+$('sb-toggle').onclick = () =>
+  setSidebar(!document.getElementById('tab-tunnels').classList.contains('no-sidebar'));
 
 // Camera lock — default LOCKED so a stray drag/touch doesn't disturb the fixed
 // TV/Umpire views (and on phones lets a swipe scroll the page instead of rotating).
@@ -608,7 +628,7 @@ function renderPitcherYear(id) {
   buildPitcher({ id: pdata.id, name: pdata.name, throws: pdata.throws,
                  tunnel_y: pdata.tunnel_y, _year: year, ...pdata.years[year] });
   document.querySelectorAll('#list li').forEach((li) => li.classList.toggle('sel', +li.dataset.id === id));
-  setView('tv');
+  // Keep whatever camera view is active — don't snap back to TV on pitcher switch.
 }
 
 // Diverging heat, matched to the Model Grades scale: top of the board (most
@@ -700,6 +720,7 @@ async function boot() {
 
   applyFilters();
   loadPitcher(INDEX.featured[0]);   // Skenes as the default
+  setView('tv');                    // initial camera (kept across pitcher switches)
 }
 
 function setYear(year) {   // driven by the shell's masthead Season control
