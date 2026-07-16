@@ -163,6 +163,16 @@ function headlinePct(yr) {
   return null;
 }
 
+// Year-fallback toast: show, then auto-fade after 5s.
+let mNoteTimer;
+function mYearNote(msg) {
+  const el = $('m-note');
+  clearTimeout(mNoteTimer);
+  el.textContent = msg || '';
+  if (msg) { el.classList.add('on'); mNoteTimer = setTimeout(() => el.classList.remove('on'), 5000); }
+  else el.classList.remove('on');
+}
+
 function renderCard() {
   const d = current;
   if (!d) return;
@@ -171,7 +181,7 @@ function renderCard() {
   $('mp-name').textContent = d.name;
   const roleLabel = yr.role === 'SP' ? 'Starter' : 'Reliever';
   $('mp-sub').textContent = `${y} · ${d.throws}HP · ${roleLabel} · thru ${yr.date || '—'}`;
-  $('m-note').textContent = (currentYear && +y !== +currentYear) ? `No ${currentYear} data — showing ${y}` : '';
+  mYearNote((currentYear && +y !== +currentYear) ? `No ${currentYear} data — showing ${y}` : '');
 
   const hv = yr.headline;
   const hpct = headlinePct(yr);
