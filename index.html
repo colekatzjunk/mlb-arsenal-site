@@ -21,7 +21,6 @@
       <button data-tab="tunnels" class="on">Pitcher Arsenal</button>
       <button data-tab="metrics">Model Grades</button>
       <button data-tab="guide">Glossary</button>
-      <button data-tab="predpower">Predictive Power</button>
     </nav>
     <div class="mast-meta">
       <span class="yr-label">Season</span>
@@ -210,97 +209,62 @@
 
         <section class="guide-block">
           <h2>Pitch Model Metrics</h2>
+          <p class="pp-pool">Each grade below also lists its predictiveness. Every figure is a year-over-year correlation (r), where <b>A &rarr; B</b> means how well A in one season predicts B the next. So <b>Pitching+ &rarr; ERA</b> is the grade forecasting next year's ERA, shown next to <b>ERA &rarr; ERA</b>, the raw stat predicting itself. Based on pitchers with at least 75 innings in both seasons, 2021 through 2026.</p>
           <table class="def-tbl">
             <thead><tr><th>Metric</th><th>Definition</th></tr></thead>
             <tbody>
               <tr>
                 <th>Pitching+</th>
-                <td>Every pitch thrown is graded by a chain of models predicting swing probability, whiff/foul/in-play probability, called-strike probability, and the outcome of balls put in play (single, double, out, etc.), which combine into an expected run value for the pitch. Inputs to these models include the pitch's physical characteristics, its deception relative to the rest of the pitcher's arsenal, its location, and context such as the count and batter handedness. Weighted toward his most recent pitches, these run-value grades are averaged and scaled so that 100 is league average and higher is better.<div class="tldr"><b>TLDR:</b> a pitcher's overall pitch quality, where 100 is average.</div></td>
+                <td>Every pitch thrown is graded by a chain of models predicting swing probability, whiff/foul/in-play probability, called-strike probability, and the outcome of balls put in play (single, double, out, etc.), which combine into an expected run value for the pitch. Inputs to these models include the pitch's physical characteristics, its deception relative to the rest of the pitcher's arsenal, its location, and context such as the count and batter handedness. Weighted toward his most recent pitches, these run-value grades are averaged and scaled so that 100 is league average and higher is better.<div class="tldr"><b>TLDR:</b> a pitcher's overall pitch quality, where 100 is average.</div><div class="corr"><b>Pitching+ &rarr; ERA: r = .44</b> &nbsp;vs&nbsp; ERA &rarr; ERA: r = .25</div></td>
               </tr>
               <tr>
                 <th>Stuff+</th>
-                <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div></td>
+                <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div><div class="corr"><b>Stuff+ &rarr; ERA: r = .40</b> &nbsp;vs&nbsp; ERA &rarr; ERA: r = .25</div></td>
               </tr>
               <tr class="def-lead"><td colspan="2">Each grade below rates a pitcher's ability at one specific outcome. A higher grade is always better.</td></tr>
               <tr>
                 <th>K+</th>
-                <td>A pitcher's ability to generate strikeouts.</td>
+                <td>A pitcher's ability to generate strikeouts.<div class="corr"><b>K+ &rarr; K%: r = .73</b> &nbsp;vs&nbsp; K% &rarr; K%: r = .73</div></td>
               </tr>
               <tr>
                 <th>BB+</th>
-                <td>A pitcher's ability to prevent walks. A higher BB+ indicates better walk prevention.</td>
+                <td>A pitcher's ability to prevent walks. A higher BB+ indicates better walk prevention.<div class="corr"><b>BB+ &rarr; BB%: r = .58</b> &nbsp;vs&nbsp; BB% &rarr; BB%: r = .54</div></td>
               </tr>
               <tr>
                 <th>SwStr+</th>
-                <td>A pitcher's ability to generate swings and misses.</td>
+                <td>A pitcher's ability to generate swings and misses.<div class="corr"><b>SwStr+ &rarr; SwStr%: r = .75</b> &nbsp;vs&nbsp; SwStr% &rarr; SwStr%: r = .76</div></td>
               </tr>
               <tr>
                 <th>Whiff+</th>
-                <td>A pitcher's ability to make hitters miss when they swing.</td>
+                <td>A pitcher's ability to make hitters miss when they swing.<div class="corr"><b>Whiff+ &rarr; Whiff%: r = .70</b> &nbsp;vs&nbsp; Whiff% &rarr; Whiff%: r = .76</div></td>
               </tr>
               <tr>
                 <th>CalledStrike+</th>
-                <td>A pitcher's ability to earn called strikes on pitches the hitter takes.</td>
+                <td>A pitcher's ability to earn called strikes on pitches the hitter takes.<div class="corr"><b>CalledStrike+ &rarr; CS%: r = .62</b> &nbsp;vs&nbsp; CS% &rarr; CS%: r = .65</div></td>
               </tr>
               <tr>
                 <th>HardHit+</th>
-                <td>A pitcher's ability to suppress hard contact (95+ mph exit velocity).</td>
+                <td>A pitcher's ability to suppress hard contact (95+ mph exit velocity).<div class="corr"><b>HardHit+ &rarr; HardHit%: r = .40</b> &nbsp;vs&nbsp; HardHit% &rarr; HardHit%: r = .42</div></td>
               </tr>
               <tr>
                 <th>Scorched+</th>
-                <td>A pitcher's ability to suppress scorched contact (105+ mph exit velocity).</td>
+                <td>A pitcher's ability to suppress scorched contact (105+ mph exit velocity).<div class="corr"><b>Scorched+ &rarr; 105+ rate: r = .41</b> &nbsp;vs&nbsp; 105+ rate &rarr; 105+ rate: r = .26</div></td>
               </tr>
               <tr>
                 <th>Soft+</th>
-                <td>A pitcher's ability to induce soft contact (80 mph or less exit velocity).</td>
+                <td>A pitcher's ability to induce soft contact (80 mph or less exit velocity).<div class="corr"><b>Soft+ &rarr; Soft%: r = .55</b> &nbsp;vs&nbsp; Soft% &rarr; Soft%: r = .53</div></td>
               </tr>
               <tr>
                 <th>Weak+</th>
-                <td>A pitcher's ability to induce weak contact (75 mph or less exit velocity).</td>
+                <td>A pitcher's ability to induce weak contact (75 mph or less exit velocity).<div class="corr"><b>Weak+ &rarr; Weak%: r = .56</b> &nbsp;vs&nbsp; Weak% &rarr; Weak%: r = .50</div></td>
               </tr>
               <tr>
                 <th>GB+</th>
-                <td>A pitcher's ability to induce ground balls (launch angle below 10 degrees).</td>
+                <td>A pitcher's ability to induce ground balls (launch angle below 10 degrees).<div class="corr"><b>GB+ &rarr; GB%: r = .71</b> &nbsp;vs&nbsp; GB% &rarr; GB%: r = .74</div></td>
               </tr>
             </tbody>
           </table>
           <p class="guide-note">All grades are scaled against every qualified pitcher, starters and relievers pooled together: 100 is the average pitcher and each 10 points is one standard deviation. A grade therefore means the same thing regardless of role, though the percentile shown on the Model Grades tab ranks a pitcher within his own role.</p>
-        </section>
-
-      </article>
-    </main>
-  </div>
-
-  <!-- ══ PREDICTIVE POWER TAB ══ ═══════════════════════════════════ -->
-  <div id="tab-predpower" class="workspace">
-    <main id="predpower">
-      <article class="guide-doc">
-        <h1 class="guide-title">Predictive Power</h1>
-        <section class="guide-block">
-          <p class="dp-lead">A grade is only worth trusting if it predicts what a pitcher does next. Each row shows how well a grade forecasts the next season's real stat, next to how well that stat forecasts itself. The further right a dot sits, the stronger the year-over-year prediction.</p>
-          <div class="dp">
-            <div class="dp-legend">
-              <span><i class="metric"></i>Our grade &rarr; next-season stat</span>
-              <span><i class="stat"></i>The raw stat &rarr; itself</span>
-            </div>
-            <div class="dp-rows">
-              <div class="dp-row"><span class="dp-name">Pitching+ <em>vs ERA</em></span><span class="dp-track"><span class="dp-seg win" style="left:8.3%;width:31.7%"></span><i class="dp-dot stat" style="left:8.3%"></i><i class="dp-dot metric" style="left:40%"></i></span><span class="dp-vals"><b class="metric">.44</b><b class="stat">.25</b></span></div>
-              <div class="dp-row"><span class="dp-name">Scorched+ <em>vs 105+ rate</em></span><span class="dp-track"><span class="dp-seg win" style="left:10%;width:25%"></span><i class="dp-dot stat" style="left:10%"></i><i class="dp-dot metric" style="left:35%"></i></span><span class="dp-vals"><b class="metric">.41</b><b class="stat">.26</b></span></div>
-              <div class="dp-row"><span class="dp-name">Stuff+ <em>vs ERA</em></span><span class="dp-track"><span class="dp-seg win" style="left:8.3%;width:25%"></span><i class="dp-dot stat" style="left:8.3%"></i><i class="dp-dot metric" style="left:33.3%"></i></span><span class="dp-vals"><b class="metric">.40</b><b class="stat">.25</b></span></div>
-              <div class="dp-row"><span class="dp-name">Weak+ <em>vs Weak%</em></span><span class="dp-track"><span class="dp-seg win" style="left:50%;width:10%"></span><i class="dp-dot stat" style="left:50%"></i><i class="dp-dot metric" style="left:60%"></i></span><span class="dp-vals"><b class="metric">.56</b><b class="stat">.50</b></span></div>
-              <div class="dp-row"><span class="dp-name">BB+ <em>vs BB%</em></span><span class="dp-track"><span class="dp-seg win" style="left:56.7%;width:6.6%"></span><i class="dp-dot stat" style="left:56.7%"></i><i class="dp-dot metric" style="left:63.3%"></i></span><span class="dp-vals"><b class="metric">.58</b><b class="stat">.54</b></span></div>
-              <div class="dp-row"><span class="dp-name">Soft+ <em>vs Soft%</em></span><span class="dp-track"><span class="dp-seg win" style="left:55%;width:3.3%"></span><i class="dp-dot stat" style="left:55%"></i><i class="dp-dot metric" style="left:58.3%"></i></span><span class="dp-vals"><b class="metric">.55</b><b class="stat">.53</b></span></div>
-              <div class="dp-row"><span class="dp-name">K+ <em>vs K%</em></span><span class="dp-track"><i class="dp-dot stat" style="left:88.3%"></i><i class="dp-dot metric" style="left:88.3%"></i></span><span class="dp-vals"><b class="metric">.73</b><b class="stat">.73</b></span></div>
-              <div class="dp-row"><span class="dp-name">SwStr+ <em>vs SwStr%</em></span><span class="dp-track"><span class="dp-seg" style="left:91.7%;width:1.6%"></span><i class="dp-dot metric" style="left:91.7%"></i><i class="dp-dot stat" style="left:93.3%"></i></span><span class="dp-vals"><b class="metric">.75</b><b class="stat">.76</b></span></div>
-              <div class="dp-row"><span class="dp-name">HardHit+ <em>vs HardHit%</em></span><span class="dp-track"><span class="dp-seg" style="left:33.3%;width:3.4%"></span><i class="dp-dot metric" style="left:33.3%"></i><i class="dp-dot stat" style="left:36.7%"></i></span><span class="dp-vals"><b class="metric">.40</b><b class="stat">.42</b></span></div>
-              <div class="dp-row"><span class="dp-name">CalledStrike+ <em>vs CS%</em></span><span class="dp-track"><span class="dp-seg" style="left:70%;width:5%"></span><i class="dp-dot metric" style="left:70%"></i><i class="dp-dot stat" style="left:75%"></i></span><span class="dp-vals"><b class="metric">.62</b><b class="stat">.65</b></span></div>
-              <div class="dp-row"><span class="dp-name">GB+ <em>vs GB%</em></span><span class="dp-track"><span class="dp-seg" style="left:85%;width:5%"></span><i class="dp-dot metric" style="left:85%"></i><i class="dp-dot stat" style="left:90%"></i></span><span class="dp-vals"><b class="metric">.71</b><b class="stat">.74</b></span></div>
-              <div class="dp-row"><span class="dp-name">Whiff+ <em>vs Whiff%</em></span><span class="dp-track"><span class="dp-seg" style="left:83.3%;width:10%"></span><i class="dp-dot metric" style="left:83.3%"></i><i class="dp-dot stat" style="left:93.3%"></i></span><span class="dp-vals"><b class="metric">.70</b><b class="stat">.76</b></span></div>
-            </div>
-            <div class="dp-axis"><span class="dp-scale"><span style="left:0;transform:none">.2</span><span style="left:33.3%">.4</span><span style="left:66.7%">.6</span><span style="left:100%;transform:translateX(-100%)">.8</span></span></div>
-          </div>
-          <p class="dp-foot">The grades pull furthest ahead on volatile outcomes like ERA and hard contact, where last season's number is an unreliable guide. On skills that are already stable from year to year, such as strikeouts and whiffs, a pitcher's own past rate is hard to beat and the grade stays close to it.</p>
-          <p class="dp-foot dp-method">Year-over-year Pearson correlation (r), 2021 through 2026, among pitchers with at least 75 innings in both seasons.</p>
         </section>
 
       </article>

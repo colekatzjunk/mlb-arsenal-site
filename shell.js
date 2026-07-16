@@ -88,6 +88,4 @@ if (location.hash === '#metrics') {
   tryOpen();
 } else if (location.hash === '#guide') {
   showTab('guide');
-} else if (location.hash === '#predpower') {
-  showTab('predpower');
 }
