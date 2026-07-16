@@ -532,7 +532,6 @@ function updateMetrics(data) {
   const lateDiv = m.plate_spread - m.tunnel_spread;
   $('m-latediv').textContent = lateDiv.toFixed(2) + ' ft';
   $('m-tunnel').textContent = m.tunnel_spread.toFixed(2) + ' ft';
-  $('m-plate').textContent = m.plate_spread.toFixed(2) + ' ft';
   $('m-entropy').textContent = m.entropy.toFixed(2);
 
   // Deception percentiles within the SHOWN year + role — Statcast-style bars.
@@ -542,7 +541,6 @@ function updateMetrics(data) {
   if (INDEX) {
     $('m-pctbar').innerHTML = pctBar(poolPct('late_divergence', lateDiv, role, yr));
     $('m-tunnelbar').innerHTML = pctBar(100 - poolPct('tunnel_spread', m.tunnel_spread, role, yr));
-    $('m-platebar').innerHTML = pctBar(poolPct('plate_spread', m.plate_spread, role, yr));
     $('m-entbar').innerHTML = pctBar(poolPct('entropy', m.entropy, role, yr));
     $('m-pctcap').textContent = `Percentile rank · ${role === 'SP' ? 'Starters' : 'Bullpen'} · ${yr}`;
   }
@@ -578,7 +576,6 @@ let roleFilter = 'SP';   // default view: starting pitchers
 const SORTS = [
   { key: 'late_divergence', label: 'Late divergence',  col: 'LD',  dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
   { key: 'tunnel_spread',   label: 'Tunnel spread',    col: 'Tun', dir: +1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
-  { key: 'plate_spread',    label: 'Plate spread',     col: 'Plt', dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
   { key: 'entropy',         label: 'Arsenal entropy',  col: 'Ent', dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
 ];
 let sortKey = 'late_divergence';
