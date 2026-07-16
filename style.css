@@ -386,6 +386,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .def-tbl tbody tr:last-child th,.def-tbl tbody tr:last-child td{border-bottom:none}
 .def-tbl tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
 .def-tbl td b{color:var(--ink);font-weight:700}
+.guide-note{margin:18px 2px 0;padding-left:14px;border-left:3px solid var(--line-2);
+  font-size:13.5px;line-height:1.65;color:var(--muted)}
+.guide-note b{color:var(--ink);font-weight:700}
 
 /* ── Mobile / narrow screens ─────────────────────── */
 .lb-toggle{display:none}
