@@ -549,9 +549,8 @@ function updateMetrics(data) {
   }
 
   $('p-name').textContent = data.name;
-  const slot = data.arm_slot ? ` · ${data.arm_slot} (${data.arm_angle}°)` : '';
   const roleLabel = role === 'SP' ? 'Starter' : 'Reliever';
-  $('p-sub').textContent = `${yr} · ${data.throws}HP · ${roleLabel}${slot} · ${data.pitches.length} pitch types · ${data.n.toLocaleString()} thrown`;
+  $('p-sub').textContent = `${yr} · ${data.throws}HP · ${roleLabel} · ${data.pitches.length} pitch types · ${data.n.toLocaleString()} thrown`;
   pYearNote((currentYear && +yr !== +currentYear) ? `No ${currentYear} data, showing ${yr}` : '');
 }
 
