@@ -367,38 +367,25 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 /* ── Guide tab ───────────────────────────────────── */
 #tab-guide{grid-template-columns:1fr}      /* no sidebar */
 #guide{min-width:0;overflow-y:auto;background:var(--bg)}
-.guide-doc{max-width:760px;margin:0 auto;padding:38px 30px 90px;color:var(--ink)}
-.guide-hero h1{font-size:30px;font-weight:800;letter-spacing:-.4px;margin:0 0 8px}
-.guide-lede{font-size:15px;line-height:1.6;color:var(--muted);margin:0}
-.guide-toc{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 6px}
-.guide-toc a{padding:6px 12px;border:1px solid var(--line-2);border-radius:20px;
-  background:var(--panel-2);color:var(--muted);font-size:12px;font-weight:600;
-  text-decoration:none;transition:.12s}
-.guide-toc a:hover{border-color:var(--red);color:var(--ink)}
-.guide-sec{padding-top:30px;margin-top:14px;border-top:1px solid var(--line);scroll-margin-top:16px}
-.guide-sec:first-of-type{border-top:none}
-.guide-sec h2{font-size:20px;font-weight:700;letter-spacing:-.2px;margin:0 0 12px}
-.guide-sec p{font-size:14.5px;line-height:1.68;color:#cdd6e2;margin:0 0 14px}
-.guide-sec p b{color:var(--ink);font-weight:700}
-.guide-sec em{color:var(--ink);font-style:italic}
-.guide-sec ul{margin:0 0 14px;padding-left:20px}
-.guide-sec li{font-size:14.5px;line-height:1.62;color:#cdd6e2;margin:0 0 8px}
-.guide-sec li b{color:var(--ink)}
-.guide-note{border-left:3px solid var(--line-2);padding:2px 0 2px 14px;
-  font-size:13.5px!important;color:var(--muted)!important}
-.guide-fine{font-size:12px!important;color:var(--dim)!important;margin-top:-6px!important}
-.guide-dl{margin:0}
-.guide-dl dt{font-size:14.5px;font-weight:700;color:var(--ink);margin:16px 0 4px}
-.guide-dl dt:first-child{margin-top:0}
-.guide-dl dd{margin:0;font-size:14px;line-height:1.62;color:#cdd6e2}
-.guide-dl dd em{color:var(--ink)}
-.guide-tbl{border-collapse:collapse;margin:0 0 8px;font-size:13.5px;
-  font-variant-numeric:tabular-nums}
-.guide-tbl th,.guide-tbl td{text-align:left;padding:8px 22px 8px 0;border-bottom:1px solid var(--line)}
-.guide-tbl th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
-.guide-tbl td{color:#cdd6e2}
-.guide-tbl tbody tr:last-child td{border-bottom:none}
-.guide-tbl td b{color:var(--red)}
+.guide-doc{max-width:900px;margin:0 auto;padding:34px 30px 90px;color:var(--ink)}
+.guide-title{font-size:28px;font-weight:800;letter-spacing:-.4px;margin:0 0 26px}
+.guide-block{margin:0 0 34px}
+.guide-block h2{font-size:19px;font-weight:700;letter-spacing:-.2px;margin:0 0 14px}
+
+/* Definition tables: metric | definition */
+.def-tbl{width:100%;border-collapse:collapse;border:1px solid var(--line);
+  border-radius:8px;overflow:hidden}
+.def-tbl thead th{text-align:left;background:var(--panel);color:var(--muted);
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  padding:10px 16px;border-bottom:1px solid var(--line-2)}
+.def-tbl tbody th{text-align:left;vertical-align:top;white-space:nowrap;
+  width:170px;padding:15px 16px;color:var(--ink);font-size:14px;font-weight:700;
+  border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.def-tbl tbody td{vertical-align:top;padding:15px 18px;color:#cdd6e2;
+  font-size:14px;line-height:1.6;border-bottom:1px solid var(--line)}
+.def-tbl tbody tr:last-child th,.def-tbl tbody tr:last-child td{border-bottom:none}
+.def-tbl tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
+.def-tbl td b{color:var(--ink);font-weight:700}
 
 /* ── Mobile / narrow screens ─────────────────────── */
 .lb-toggle{display:none}
@@ -471,7 +458,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 
   /* Guide: full-width reading column, let the page scroll */
   #guide{overflow:visible;height:auto}
-  .guide-doc{padding:22px 16px 70px}
-  .guide-hero h1{font-size:25px}
-  .guide-tbl{display:block;overflow-x:auto}
+  .guide-doc{padding:22px 14px 70px}
+  .guide-title{font-size:24px}
+  .def-tbl tbody th{white-space:normal;width:34%;padding:12px;font-size:13px}
+  .def-tbl tbody td{padding:12px;font-size:13px}
 }

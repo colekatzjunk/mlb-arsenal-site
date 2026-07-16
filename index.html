@@ -96,6 +96,10 @@
             <div class="dm-h"><span>Tunnel Spread</span><b id="m-tunnel">—</b></div>
             <div id="m-tunnelbar" class="card-bar"></div>
           </div>
+          <div class="dm" title="Usage-weighted average velocity gap between the pitcher's pitch types. Bigger = more speed separation across the arsenal.">
+            <div class="dm-h"><span>Velo Spread</span><b id="m-velospread">—</b></div>
+            <div id="m-velospreadbar" class="card-bar"></div>
+          </div>
           <div class="dm" title="How many pitch types the pitcher throws and how evenly they're mixed (Shannon entropy).">
             <div class="dm-h"><span>Arsenal Entropy</span><b id="m-entropy">—</b></div>
             <div id="m-entbar" class="card-bar"></div>
@@ -171,90 +175,35 @@
     <main id="guide">
       <article class="guide-doc">
 
-        <header class="guide-hero">
-          <h1>Guide</h1>
-          <p class="guide-lede">What every number on this site means, and how it's built. All data is MLB Statcast pitch tracking, 2021&ndash;2026.</p>
-        </header>
+        <h1 class="guide-title">Guide</h1>
 
-        <nav class="guide-toc">
-          <a href="#g-basics">The basics</a>
-          <a href="#g-arsenal">Arsenal metrics</a>
-          <a href="#g-grades">Model grades</a>
-          <a href="#g-tunnel">The tunnel point</a>
-          <a href="#g-method">Methodology &amp; honesty</a>
-        </nav>
-
-        <section id="g-basics" class="guide-sec">
-          <h2>The basics</h2>
-          <p>Two tabs, two questions:</p>
-          <ul>
-            <li><b>Pitcher Arsenal</b> renders every pitch a pitcher throws in 3D, so you can watch how his pitches share a path out of the hand and then break apart &mdash; the essence of pitch <em>tunneling</em>.</li>
-            <li><b>Model Grades</b> scores a pitcher's raw stuff. Every grade ends in a &ldquo;+&rdquo;: <b>100 is league average, higher is better</b>, and the percentile beside it is the pitcher's rank against others in his role (starter or reliever) that season.</li>
-          </ul>
-        </section>
-
-        <section id="g-arsenal" class="guide-sec">
+        <section class="guide-block">
           <h2>Arsenal metrics</h2>
-          <p>These describe the <em>shape</em> of an arsenal &mdash; how tightly it tunnels and how it's mixed. All are measured at the 35-ft tunnel point above.</p>
-          <dl class="guide-dl">
-            <dt>Late Divergence</dt>
-            <dd>The headline deception number: how much extra separation the pitches gain <em>after</em> the tunnel point (spread at the plate minus spread at 35&nbsp;ft). High values mean the pitches look alike early, then split apart late &mdash; the hardest look to hit.</dd>
-
-            <dt>Tunnel Spread</dt>
-            <dd>How close the different pitch types are to one another at the 35-ft point, weighted by how often each is thrown. <em>Lower is tighter</em> &mdash; a smaller spread means a more convincing shared tunnel.</dd>
-
-            <dt>Arsenal Entropy</dt>
-            <dd>How many pitch types a pitcher throws and how evenly he mixes them (Shannon entropy). Higher means a deeper, more balanced arsenal; lower means he leans heavily on one or two pitches.</dd>
-          </dl>
-        </section>
-
-        <section id="g-grades" class="guide-sec">
-          <h2>Model grades</h2>
-          <p>The &ldquo;+&rdquo; grades come from a set of machine-learning models trained on every pitch, 2021&ndash;2026. Each model predicts an outcome from a pitch's physical traits &mdash; velocity, movement, release, location, and how it plays off the rest of the arsenal &mdash; and the result is scaled so <b>100 is average and higher is better</b>.</p>
-          <dl class="guide-dl">
-            <dt>Pitching+</dt>
-            <dd>The overall grade &mdash; a pitcher's complete arsenal distilled into one number.</dd>
-            <dt>Stuff+</dt>
-            <dd>Raw physical quality of the pitches &mdash; velocity, movement, and spin &mdash; independent of location.</dd>
-            <dt>Strikeout+ &middot; Whiff+ &middot; Miss+</dt>
-            <dd>Ability to generate swings and misses: strikeouts overall, whiffs per swing, and swing-and-miss stuff in general.</dd>
-            <dt>BB+ &middot; Called-Strike+</dt>
-            <dd>Command &mdash; limiting walks while stealing called strikes.</dd>
-            <dt>Contact quality &mdash; HardHit+ &middot; Scorched+ &middot; Soft+ &middot; Weak+ &middot; GB+</dt>
-            <dd>When hitters do make contact, how well the arsenal suppresses hard, well-struck balls and induces soft or ground-ball contact.</dd>
-          </dl>
-          <p class="guide-fine">Each grade is ranked against pitchers in the same role &mdash; starters vs. starters, relievers vs. relievers &mdash; for the selected season.</p>
-        </section>
-
-        <section id="g-tunnel" class="guide-sec">
-          <h2>The tunnel point &mdash; why 35 feet?</h2>
-          <p>Two pitches &ldquo;tunnel&rdquo; when they leave the hand on the same apparent path and stay indistinguishable until it's too late for the hitter to adjust. To measure that, we need a single reference point &mdash; the spot where the pitches should still look alike. We use <b>35 feet in front of home plate</b>.</p>
-
-          <p>That's a little <em>earlier</em> than the classic decision point. Baseball Prospectus, who pioneered pitch-tunneling analysis, placed the tunnel point at roughly <b>24 feet</b> from the plate &mdash; the &ldquo;point of no return,&rdquo; about 150&nbsp;milliseconds before the ball arrives, where a hitter has to commit to swing.</p>
-
-          <p>So why measure at 35 feet instead of the commit point? Because, empirically, it lines up with real swing outcomes better. When we measure deception at each distance and correlate it with a pitcher's chase and whiff rates:</p>
-
-          <table class="guide-tbl">
-            <thead><tr><th>Measured at</th><th>vs&nbsp;Whiff%</th><th>vs&nbsp;Chase%</th></tr></thead>
+          <table class="def-tbl">
+            <thead><tr><th>Metric</th><th>Definition</th></tr></thead>
             <tbody>
-              <tr><td>~24&nbsp;ft (commit point)</td><td>+0.31</td><td>+0.21</td></tr>
-              <tr><td><b>35&nbsp;ft (used here)</b></td><td><b>+0.31</b></td><td><b>+0.29</b></td></tr>
+              <tr>
+                <th>Tunnel Spread</th>
+                <td>Measured in inches, this is the usage-weighted average distance between the pitcher's pitch types 35&nbsp;feet in front of home plate (the chosen tunnel point). For every pair of pitch types, we take the straight-line distance between their average locations at 35&nbsp;ft, weight it by how often that pair is thrown, and average across all pairs. <b>A lower value means the pitch types appear in nearly the same location at the tunnel point.</b></td>
+              </tr>
+              <tr>
+                <th>Plate Spread</th>
+                <td>Uses the same usage-weighted pairwise distance as Tunnel Spread, but measured as the pitches cross home plate instead of at the tunnel point. Measured in inches. <b>Higher means the pitch types finish farther apart</b> by the time they reach the plate.</td>
+              </tr>
+              <tr>
+                <th>Late Divergence</th>
+                <td>Plate Spread minus Tunnel Spread &mdash; the extra separation the pitches gain between the 35-ft tunnel point and home plate. Measured in inches. <b>A high value indicates that the pitches look alike early and then split apart late.</b></td>
+              </tr>
+              <tr>
+                <th>Velo Spread</th>
+                <td>The usage-weighted average velocity gap between the pitcher's pitch types. For every pair of pitch types, we take the difference in their average velocity, weight it by how often that pair is thrown, and average across all pairs. Measured in mph. <b>Higher means more speed separation across the arsenal</b>, which makes it harder for a hitter to time.</td>
+              </tr>
+              <tr>
+                <th>Arsenal Entropy</th>
+                <td>The Shannon entropy of the pitcher's pitch-usage mix &mdash; how many pitch types he throws and how evenly he mixes them. <b>Higher means more pitch types thrown in more even proportions</b>; lower means the pitcher leans heavily on one or two pitches.</td>
+              </tr>
             </tbody>
           </table>
-          <p class="guide-fine">Correlation of Late Divergence with each rate, standardized within season and pooled across 2021&ndash;2026.</p>
-
-          <p>Whiff tracks about the same either way, but chase is clearly stronger at 35&nbsp;feet. A plausible reason: a hitter reads pitch <em>type</em> from early-flight cues &mdash; release, spin, initial angle &mdash; but judges <em>location</em> (ball vs. strike) later, after tracking the ball longer. Pitches that still look identical at 35&nbsp;feet corrupt the type read in the exact window the hitter relies on it, before he can correct &mdash; and chasing is what happens when that read is wrong.</p>
-
-          <p class="guide-note">This is a hypothesis backed by a correlation, not a controlled perception study. There's also a simpler measurement effect: at 35&nbsp;feet the pitches are still bunched together, so the metric has more room to tell good tunnelers apart from poor ones than it does closer to the plate, where the pitches have already separated.</p>
-        </section>
-
-        <section id="g-method" class="guide-sec">
-          <h2>Methodology &amp; honesty</h2>
-          <p><b>Where the data comes from.</b> Everything is derived from public MLB Statcast pitch tracking. Each pitch's flight is reconstructed from its release point and recorded velocity and acceleration, then evaluated at any distance from the plate &mdash; that's how the viewer can freeze the pitches at 35&nbsp;feet or roll them all the way to the mitt.</p>
-
-          <p><b>Colors.</b> Pitch colors follow the Baseball Savant convention, so a four-seamer, slider, or changeup looks the same here as it does there.</p>
-
-          <p><b>What deception is &mdash; and isn't.</b> The arsenal metrics are <em>descriptive</em>. They put a transparent number on something you can watch in the 3D viewer, and the same tunnel-and-spread features feed the Model Grades. But they're not a secret predictive edge on top of the models: because the grades already use these features, deception adds essentially nothing to what the models can forecast about a pitcher beyond the grades themselves. Treat Late Divergence as a way to <em>understand</em> a pitcher's look, not to out-predict the grades.</p>
         </section>
 
       </article>

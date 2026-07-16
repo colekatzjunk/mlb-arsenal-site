@@ -530,8 +530,9 @@ function poolPct(key, val, role, yr) {
 function updateMetrics(data) {
   const m = data.metrics;
   const lateDiv = m.plate_spread - m.tunnel_spread;
-  $('m-latediv').textContent = lateDiv.toFixed(2) + ' ft';
-  $('m-tunnel').textContent = m.tunnel_spread.toFixed(2) + ' ft';
+  $('m-latediv').textContent = (lateDiv * 12).toFixed(1) + ' in';
+  $('m-tunnel').textContent = (m.tunnel_spread * 12).toFixed(1) + ' in';
+  $('m-velospread').textContent = m.velo_spread.toFixed(1) + ' mph';
   $('m-entropy').textContent = m.entropy.toFixed(2);
 
   // Deception percentiles within the SHOWN year + role — Statcast-style bars.
@@ -541,6 +542,7 @@ function updateMetrics(data) {
   if (INDEX) {
     $('m-pctbar').innerHTML = pctBar(poolPct('late_divergence', lateDiv, role, yr));
     $('m-tunnelbar').innerHTML = pctBar(100 - poolPct('tunnel_spread', m.tunnel_spread, role, yr));
+    $('m-velospreadbar').innerHTML = pctBar(poolPct('velo_spread', m.velo_spread, role, yr));
     $('m-entbar').innerHTML = pctBar(poolPct('entropy', m.entropy, role, yr));
     $('m-pctcap').textContent = `Percentile rank · ${role === 'SP' ? 'Starters' : 'Bullpen'} · ${yr}`;
   }
@@ -574,12 +576,13 @@ let roleFilter = 'SP';   // default view: starting pitchers
 
 // Sortable leaderboard metrics. dir: -1 = high→low (best-first default), +1 = low→high.
 const SORTS = [
-  { key: 'late_divergence', label: 'Late Divergence',  col: 'LD',  dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
-  { key: 'tunnel_spread',   label: 'Tunnel Spread',    col: 'Tun', dir: +1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
+  { key: 'late_divergence', label: 'Late Divergence',  col: 'LD',  dir: -1, fmt: (v) => `<b>${(v * 12).toFixed(1)}</b>` },
+  { key: 'tunnel_spread',   label: 'Tunnel Spread',    col: 'Tun', dir: +1, fmt: (v) => `<b>${(v * 12).toFixed(1)}</b>` },
+  { key: 'velo_spread',     label: 'Velo Spread',      col: 'Velo', dir: -1, fmt: (v) => `<b>${v.toFixed(1)}</b>` },
   { key: 'entropy',         label: 'Arsenal Entropy',  col: 'Ent', dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
 ];
-let sortKey = 'late_divergence';
-let sortDir = -1;
+let sortKey = 'tunnel_spread';
+let sortDir = 1;   // ascending: tightest tunnel (lowest spread) first
 const sortCfg = () => SORTS.find((s) => s.key === sortKey) || SORTS[0];
 
 function computeYear(year) {
@@ -711,6 +714,7 @@ async function boot() {
   const sel = $('sortsel');
   sel.innerHTML = SORTS.map((s) => `<option value="${s.key}">${s.label}</option>`).join('');
   sel.value = sortKey;
+  $('sortdir').textContent = sortDir < 0 ? '▼' : '▲';   // match initial sort direction
   sel.onchange = () => {
     sortKey = sel.value; sortDir = sortCfg().dir;
     $('sortdir').textContent = sortDir < 0 ? '▼' : '▲';
@@ -723,7 +727,7 @@ async function boot() {
   };
 
   applyFilters();
-  loadPitcher(INDEX.featured[0]);   // Skenes as the default
+  loadPitcher(INDEX.featured[0]);   // Yesavage as the default
   setView('tv');                    // initial camera (kept across pitcher switches)
 }
 
