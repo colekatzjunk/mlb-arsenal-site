@@ -41,18 +41,18 @@ const GROUP_LABELS = {
 
 // Hover descriptions (pitcher's perspective, all model-projected, not raw results).
 const DESC = {
-  pplus: "Overall projected pitch quality: the model's expected run value of everything the pitcher throws.",
-  stuffplus: "Grade of the pitcher's raw stuff, independent of location and count context.",
-  kplus: "The pitcher's projected strikeout ability.",
-  bbplus: "The pitcher's projected walk-prevention ability. A higher grade means fewer walks.",
-  whiffplus: "The swing-and-miss rate the pitcher's pitches are expected to generate.",
-  missplus: "When hitters swing, how often they're expected to miss: the pitcher's pure projected bat-missing ability.",
-  csplus: "How well the pitcher is expected to steal called strikes that hitters are projected to take.",
-  hardhitplus: "How well the pitcher is expected to suppress hard contact (95+ mph exit velocity).",
-  barrel95plus: "How well the pitcher is expected to suppress scorched contact (105+ mph exit velocity).",
-  softplus: "How much soft contact (≤80 mph exit velocity) the pitcher is expected to induce.",
-  weakplus: "How much very weak contact (≤75 mph exit velocity) the pitcher is expected to induce.",
-  gbplus: "The pitcher's projected ability to induce ground balls. A higher grade means more grounders.",
+  pplus: "A pitcher's overall pitch quality, where 100 is average.",
+  stuffplus: "The raw quality of a pitcher's pitches, regardless of location.",
+  kplus: "A pitch's expected contribution to strikeout probability, as opposed to run value.",
+  bbplus: "A pitch's expected contribution to walk probability. A higher BB+ value indicates better walk prevention ability.",
+  whiffplus: "The likelihood a pitch induces a swing and miss.",
+  missplus: "Given a swing, the likelihood the pitch is missed.",
+  csplus: "The likelihood a pitch is taken and called a strike by the umpire.",
+  hardhitplus: "How well a pitch suppresses exit velocities of 95+ mph on balls in play.",
+  barrel95plus: "How well a pitch suppresses exit velocities of 105+ mph on balls in play.",
+  softplus: "The likelihood a pitch induces an exit velocity of 80 mph or less on balls in play.",
+  weakplus: "The likelihood a pitch induces an exit velocity of 75 mph or less on balls in play.",
+  gbplus: "The likelihood a pitch induces a launch angle below 10 degrees on balls in play.",
 };
 
 const HIDE = new Set([
@@ -182,7 +182,7 @@ function renderCard() {
   const yr = d.years[y];
   $('mp-name').textContent = d.name;
   const roleLabel = yr.role === 'SP' ? 'Starter' : 'Reliever';
-  $('mp-sub').textContent = `${y} · ${d.throws}HP · ${roleLabel} · thru ${yr.date || '-'}`;
+  $('mp-sub').textContent = `${y} · ${d.throws}HP · ${roleLabel} · last ${yr.role === 'SP' ? 'start' : 'appearance'} ${yr.date || '-'}`;
   mYearNote((currentYear && +y !== +currentYear) ? `No ${currentYear} data, showing ${y}` : '');
 
   const hv = yr.headline;

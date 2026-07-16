@@ -209,57 +209,58 @@
 
         <section class="guide-block">
           <h2>Pitch Model Metrics</h2>
+          <p class="corr-note">Each metric lists its year-over-year predictiveness: the correlation between the metric in one season and the matching real stat the next, versus how well that stat predicts itself. Based on pitchers with 75+ innings in both seasons, pooled across 2021 through 2026. Where a metric ties or trails the raw stat, the two combined still predict better, so it adds information.</p>
           <table class="def-tbl">
             <thead><tr><th>Metric</th><th>Definition</th></tr></thead>
             <tbody>
               <tr>
                 <th>Pitching+</th>
-                <td>Every pitch thrown is graded by a chain of models predicting swing probability, whiff/foul/in-play probability, called-strike probability, and the outcome of balls put in play (single, double, out, etc.), which combine into an expected run value for the pitch. Inputs to these models include the pitch's physical characteristics, its deception relative to the rest of the pitcher's arsenal, its location, and context such as the count and batter handedness. Weighted toward his most recent pitches, these run-value grades are averaged and scaled so that 100 is league average and higher is better.<div class="tldr"><b>TLDR:</b> a pitcher's overall pitch quality, where 100 is average.</div></td>
+                <td>Every pitch thrown is graded by a chain of models predicting swing probability, whiff/foul/in-play probability, called-strike probability, and the outcome of balls put in play (single, double, out, etc.), which combine into an expected run value for the pitch. Inputs to these models include the pitch's physical characteristics, its deception relative to the rest of the pitcher's arsenal, its location, and context such as the count and batter handedness. Weighted toward his most recent pitches, these run-value grades are averaged and scaled so that 100 is league average and higher is better.<div class="tldr"><b>TLDR:</b> a pitcher's overall pitch quality, where 100 is average.</div><div class="corr"><b>Predicts:</b> next-season ERA at r = .44 (vs .25 for ERA alone).</div></td>
               </tr>
               <tr>
                 <th>Stuff+</th>
-                <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div></td>
+                <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div><div class="corr"><b>Predicts:</b> next-season ERA at r = .40 (vs .25 for ERA alone).</div></td>
               </tr>
               <tr class="def-lead"><td colspan="2">The grades below each focus on one specific outcome for every pitch thrown. A higher grade is always better.</td></tr>
               <tr>
                 <th>K+</th>
-                <td>A pitch's expected contribution to strikeout probability, as opposed to run value.</td>
+                <td>A pitch's expected contribution to strikeout probability, as opposed to run value.<div class="corr"><b>Predicts:</b> next-season K% at r = .73 (vs .73 for K% alone); the two combined reach .77.</div></td>
               </tr>
               <tr>
                 <th>BB+</th>
-                <td>A pitch's expected contribution to walk probability. A higher BB+ value indicates better walk prevention ability.</td>
+                <td>A pitch's expected contribution to walk probability. A higher BB+ value indicates better walk prevention ability.<div class="corr"><b>Predicts:</b> next-season BB% at r = .58 (vs .54 for BB% alone).</div></td>
               </tr>
               <tr>
                 <th>Whiff+</th>
-                <td>The likelihood a pitch induces a swing and miss.</td>
+                <td>The likelihood a pitch induces a swing and miss.<div class="corr"><b>Predicts:</b> next-season SwStr% at r = .75 (vs .76 for SwStr% alone); the two combined reach .79.</div></td>
               </tr>
               <tr>
                 <th>Miss+</th>
-                <td>Given a swing, the likelihood the pitch is missed.</td>
+                <td>Given a swing, the likelihood the pitch is missed.<div class="corr"><b>Predicts:</b> next-season whiff-per-swing at r = .70 (vs .76 for the stat alone); the two combined reach .77.</div></td>
               </tr>
               <tr>
                 <th>CalledStrike+</th>
-                <td>The likelihood a pitch is taken and called a strike by the umpire.</td>
+                <td>The likelihood a pitch is taken and called a strike by the umpire.<div class="corr"><b>Predicts:</b> next-season CS% at r = .62 (vs .65 for CS% alone); the two combined reach .68.</div></td>
               </tr>
               <tr>
                 <th>HardHit+</th>
-                <td>How well a pitch suppresses exit velocities of 95+ mph on balls in play.</td>
+                <td>How well a pitch suppresses exit velocities of 95+ mph on balls in play.<div class="corr"><b>Predicts:</b> next-season HardHit% at r = .40 (vs .42 for HardHit% alone); the two combined reach .48.</div></td>
               </tr>
               <tr>
                 <th>Scorched+</th>
-                <td>How well a pitch suppresses exit velocities of 105+ mph on balls in play.</td>
+                <td>How well a pitch suppresses exit velocities of 105+ mph on balls in play.<div class="corr"><b>Predicts:</b> next-season 105+ rate at r = .41 (vs .26 for the rate alone).</div></td>
               </tr>
               <tr>
                 <th>Soft+</th>
-                <td>The likelihood a pitch induces an exit velocity of 80 mph or less on balls in play.</td>
+                <td>The likelihood a pitch induces an exit velocity of 80 mph or less on balls in play.<div class="corr"><b>Predicts:</b> next-season Soft% at r = .55 (vs .53 for Soft% alone).</div></td>
               </tr>
               <tr>
                 <th>Weak+</th>
-                <td>The likelihood a pitch induces an exit velocity of 75 mph or less on balls in play.</td>
+                <td>The likelihood a pitch induces an exit velocity of 75 mph or less on balls in play.<div class="corr"><b>Predicts:</b> next-season Weak% at r = .56 (vs .50 for Weak% alone).</div></td>
               </tr>
               <tr>
                 <th>GB+</th>
-                <td>The likelihood a pitch induces a launch angle below 10 degrees on balls in play.</td>
+                <td>The likelihood a pitch induces a launch angle below 10 degrees on balls in play.<div class="corr"><b>Predicts:</b> next-season GB% at r = .71 (vs .74 for GB% alone); the two combined reach .77.</div></td>
               </tr>
             </tbody>
           </table>
