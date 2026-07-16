@@ -148,7 +148,7 @@ b{font-weight:600}
   text-shadow:0 1px 12px #0009}
 #who #p-sub{color:#b9c6d6;font-size:12px;text-shadow:0 1px 8px #000a}
 
-/* "no data for this year" fallback — centered toast that auto-fades after 5s */
+/* "no data for this year" fallback, centered toast that auto-fades after 5s */
 .yr-note{position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:120;
   max-width:calc(100% - 32px);text-align:center;font-size:12px;font-weight:600;
   color:#e6b455;background:rgba(18,24,34,.95);border:1px solid rgba(230,180,85,.5);
@@ -223,7 +223,7 @@ b{font-weight:600}
   font-size:10.5px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
 .pct-cap{font-size:9.5px;text-transform:uppercase;letter-spacing:.13em;color:var(--dim);
   font-weight:700;margin-bottom:9px}
-/* Deception percentile — Savant-style bar (reuses .m-bar/.m-fill/.m-dot) */
+/* Deception percentile, Savant-style bar (reuses .m-bar/.m-fill/.m-dot) */
 #metrics .card-bar{margin-bottom:6px}
 #metrics .card-leg{display:flex;justify-content:space-between;font-size:8.5px;font-weight:800;
   letter-spacing:.06em;margin-bottom:13px}

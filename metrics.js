@@ -1,4 +1,4 @@
-// Metrics tab — cascade+ pitcher profile (grouped percentile sliders), per season.
+// Metrics tab: cascade+ pitcher profile (grouped percentile sliders), per season.
 // Data: data/metrics_index.json (roster + per-year P+) and data/metrics/{id}.json
 // (nested by year). The active season is driven globally by the shell's masthead.
 
@@ -40,21 +40,21 @@ const GROUP_LABELS = {
   'Contact Quality (EV+)': 'Induced Contact Quality Ability',
 };
 
-// Hover descriptions — pitcher's perspective, all model-projected (not raw results).
+// Hover descriptions (pitcher's perspective, all model-projected, not raw results).
 const DESC = {
-  pplus: "Overall projected pitch quality — the model's expected run value of everything the pitcher throws.",
+  pplus: "Overall projected pitch quality: the model's expected run value of everything the pitcher throws.",
   stuffplus: "Grade of the pitcher's raw stuff, independent of location and count context.",
   kplus: "The pitcher's projected strikeout ability.",
-  bbplus: "The pitcher's projected walk-prevention ability — a higher grade means fewer walks.",
+  bbplus: "The pitcher's projected walk-prevention ability. A higher grade means fewer walks.",
   whiffplus: "The swing-and-miss rate the pitcher's pitches are expected to generate.",
-  missplus: "When hitters swing, how often they're expected to miss — the pitcher's pure projected bat-missing ability.",
-  csplus: "How well the pitcher is expected to steal called strikes — strikes hitters are projected to take.",
+  missplus: "When hitters swing, how often they're expected to miss. The pitcher's pure projected bat-missing ability.",
+  csplus: "How well the pitcher is expected to steal called strikes that hitters are projected to take.",
   hardhitplus: "How well the pitcher is expected to suppress hard contact (95+ mph exit velocity).",
   veryhardhitplus: "How well the pitcher is expected to suppress crushed contact (100+ mph exit velocity).",
   barrel95plus: "How well the pitcher is expected to suppress scorched contact (105+ mph exit velocity).",
   softplus: "How much soft contact (≤80 mph exit velocity) the pitcher is expected to induce.",
   weakplus: "How much very weak contact (≤75 mph exit velocity) the pitcher is expected to induce.",
-  gbplus: "The pitcher's projected ability to induce ground balls — a higher grade means more grounders.",
+  gbplus: "The pitcher's projected ability to induce ground balls. A higher grade means more grounders.",
 };
 
 const HIDE = new Set([
@@ -83,9 +83,12 @@ function sortedRoster() {
 
 function renderList() {
   const q = $('m-search').value.toLowerCase().trim();
-  const ranked = sortedRoster();
+  const ranked = sortedRoster();   // display order (follows the sort toggle)
+  // Rank number + heat color follow the metric's canonical good direction, so a
+  // good grade stays rank 1 / red regardless of which way the list is sorted.
+  const dir = sortCfg().dir || -1;
   RANK = {};
-  ranked.forEach((p, i) => { RANK[p.id] = i + 1; });
+  [...ranked].sort((a, b) => (a.val - b.val) * dir).forEach((p, i) => { RANK[p.id] = i + 1; });
   const items = q ? ranked.filter((p) => p.name.toLowerCase().includes(q)) : ranked;
   $('m-count').textContent = items.length;
   const total = ranked.length;
@@ -180,8 +183,8 @@ function renderCard() {
   const yr = d.years[y];
   $('mp-name').textContent = d.name;
   const roleLabel = yr.role === 'SP' ? 'Starter' : 'Reliever';
-  $('mp-sub').textContent = `${y} · ${d.throws}HP · ${roleLabel} · thru ${yr.date || '—'}`;
-  mYearNote((currentYear && +y !== +currentYear) ? `No ${currentYear} data — showing ${y}` : '');
+  $('mp-sub').textContent = `${y} · ${d.throws}HP · ${roleLabel} · thru ${yr.date || '-'}`;
+  mYearNote((currentYear && +y !== +currentYear) ? `No ${currentYear} data, showing ${y}` : '');
 
   const hv = yr.headline;
   const hpct = headlinePct(yr);
@@ -189,7 +192,7 @@ function renderCard() {
   const hcol = hpct != null ? pctColor(hpct) : null;
   let html = '';
   html += `<div class="m-hero" data-desc="${DESC.pplus}">` +
-    `<span class="hn"${hcol ? ` style="color:${hcol}"` : ''}>${hv != null ? Math.round(hv) : '—'}</span>` +
+    `<span class="hn"${hcol ? ` style="color:${hcol}"` : ''}>${hv != null ? Math.round(hv) : '-'}</span>` +
     `<div class="hmeta">` +
       `<span class="hlab">Pitching+ · ${y}</span>` +
       (hpct != null
@@ -212,7 +215,7 @@ function renderCard() {
       html += `<div class="m-row${dim}" data-desc="${DESC[m.key] || ''}">` +
         `<span class="lab">${labelOf(m)}</span>` +
         bar(pct) +
-        `<span class="val">${v != null ? v.toFixed(1) : '—'}</span>` +
+        `<span class="val">${v != null ? v.toFixed(1) : '-'}</span>` +
         `</div>`;
     }
     html += `</div>`;

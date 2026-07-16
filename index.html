@@ -20,7 +20,7 @@
     <nav id="tabs" class="segmented">
       <button data-tab="tunnels" class="on">Pitcher Arsenal</button>
       <button data-tab="metrics">Model Grades</button>
-      <button data-tab="guide">Guide / Definitions</button>
+      <button data-tab="guide">Glossary</button>
     </nav>
     <div class="mast-meta">
       <span class="yr-label">Season</span>
@@ -68,7 +68,7 @@
       <header id="topbar">
         <button id="lb-toggle" class="lb-toggle" aria-label="Open leaderboard">☰ Pitchers</button>
         <div id="who">
-          <h2 id="p-name">—</h2>
+          <h2 id="p-name">-</h2>
           <span id="p-sub"></span>
           <span id="p-note" class="yr-note"></span>
         </div>
@@ -88,20 +88,20 @@
         <div class="card-leg"><span class="poor">POOR</span><span class="avg">AVERAGE</span><span class="great">GREAT</span></div>
 
         <div class="dm-list">
-          <div class="dm" title="How much extra separation the pitcher's pitches gain after the 35-ft tunnel point — plate spread minus tunnel spread. Bigger = they look alike early, then split apart late.">
-            <div class="dm-h"><span>Late Divergence</span><b id="m-latediv">—</b></div>
+          <div class="dm" title="How much extra separation the pitcher's pitches gain after the 35-ft tunnel point (plate spread minus tunnel spread). Bigger means they look alike early, then split apart late.">
+            <div class="dm-h"><span>Late Divergence</span><b id="m-latediv">-</b></div>
             <div id="m-pctbar" class="card-bar"></div>
           </div>
           <div class="dm" title="Average distance between the pitcher's different pitch types 35 ft in front of the plate, weighted by pitch frequency.">
-            <div class="dm-h"><span>Tunnel Spread</span><b id="m-tunnel">—</b></div>
+            <div class="dm-h"><span>Tunnel Spread</span><b id="m-tunnel">-</b></div>
             <div id="m-tunnelbar" class="card-bar"></div>
           </div>
           <div class="dm" title="Usage-weighted average velocity gap between the pitcher's pitch types. Bigger = more speed separation across the arsenal.">
-            <div class="dm-h"><span>Velo Spread</span><b id="m-velospread">—</b></div>
+            <div class="dm-h"><span>Velo Spread</span><b id="m-velospread">-</b></div>
             <div id="m-velospreadbar" class="card-bar"></div>
           </div>
           <div class="dm" title="How many pitch types the pitcher throws and how evenly they're mixed (Shannon entropy).">
-            <div class="dm-h"><span>Arsenal Entropy</span><b id="m-entropy">—</b></div>
+            <div class="dm-h"><span>Arsenal Entropy</span><b id="m-entropy">-</b></div>
             <div id="m-entbar" class="card-bar"></div>
           </div>
         </div>
@@ -161,7 +161,7 @@
       <header id="m-topbar">
         <button id="m-lb-toggle" class="lb-toggle" aria-label="Open leaderboard">☰ Pitchers</button>
         <div id="m-who">
-          <h2 id="mp-name">—</h2>
+          <h2 id="mp-name">-</h2>
           <span id="mp-sub"></span>
           <span id="m-note" class="yr-note"></span>
         </div>
@@ -175,7 +175,7 @@
     <main id="guide">
       <article class="guide-doc">
 
-        <h1 class="guide-title">Guide / Definitions</h1>
+        <h1 class="guide-title">Glossary</h1>
 
         <section class="guide-block">
           <h2>Arsenal metrics</h2>
@@ -192,7 +192,7 @@
               </tr>
               <tr>
                 <th>Late Divergence</th>
-                <td>Plate Spread minus Tunnel Spread &mdash; the extra separation the pitches gain between the 35-ft tunnel point and home plate. Measured in inches. <b>A high value indicates that the pitches look alike early and then split apart late.</b></td>
+                <td>Plate Spread minus Tunnel Spread. This is the extra separation the pitches gain between the 35-ft tunnel point and home plate. Measured in inches. <b>A high value indicates that the pitches look alike early and then split apart late.</b></td>
               </tr>
               <tr>
                 <th>Velo Spread</th>
@@ -200,11 +200,11 @@
               </tr>
               <tr>
                 <th>Arsenal Entropy</th>
-                <td>The Shannon entropy of the pitcher's pitch-usage mix &mdash; how many pitch types he throws and how evenly he mixes them. <b>Higher means more pitch types thrown in more even proportions</b>; lower means the pitcher leans heavily on one or two pitches.</td>
+                <td>The Shannon entropy of the pitcher's pitch-usage mix, capturing how many pitch types he throws and how evenly he mixes them. <b>Higher means more pitch types thrown in more even proportions</b>; lower means the pitcher leans heavily on one or two pitches.</td>
               </tr>
             </tbody>
           </table>
-          <p class="guide-note"><b>A note on the 35-foot tunnel point.</b> The tunneling metrics above are all measured 35&nbsp;feet in front of home plate, rather than at the hitter's traditional &ldquo;decision point&rdquo; of roughly 25&nbsp;feet &mdash; the spot where a batter is generally thought to commit to his swing. We measure at 35&nbsp;feet because Late Divergence correlates more strongly with both Whiff% and Chase% there than it does at 25&nbsp;feet. That may suggest that a pitcher's deception at 35&nbsp;feet, while the pitches are still bunched together and before the hitter has fully committed, is actually more important than deception at the widely cited decision point.</p>
+          <p class="guide-note"><b>A note on the 35-foot tunnel point.</b> The tunneling metrics above are all measured 35&nbsp;feet in front of home plate, rather than at the hitter's traditional &ldquo;decision point&rdquo; of roughly 25&nbsp;feet, the spot where a batter is generally thought to commit to his swing. We measure at 35&nbsp;feet because Late Divergence correlates more strongly with both Whiff% and Chase% there than it does at 25&nbsp;feet. This pattern holds in every season from 2021 through 2026. That may suggest that a pitcher's deception at 35&nbsp;feet, while the pitches are still bunched together and before the hitter has fully committed, is actually more important than deception at the widely cited decision point.</p>
         </section>
 
       </article>

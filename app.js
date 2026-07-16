@@ -16,7 +16,7 @@ const BALL_R = 0.19;     // ball marker radius (ft). True baseball ≈0.12; exag
 // Statcast (x=side, y=dist from plate, z=height) -> three.js (x, up=y, z=dist).
 // Negate x: Statcast x is catcher's-perspective (RHP release is negative x). Flipping
 // makes the default behind-the-mound (center-field cam) view read with correct
-// handedness — a LHP shows on the correct side.
+// handedness, a LHP shows on the correct side.
 const toScene = (sx, height, ydist) => new THREE.Vector3(-sx, height, ydist);
 
 // ── DOM ─────────────────────────────────────────────────────────────
@@ -65,7 +65,7 @@ function buildField() {
   dirt.position.set(0, 0.01, 59);          // mound center: 59 ft from the plate apex (18" in front of rubber)
   scene.add(dirt);
 
-  // pitching rubber — 24" wide, 60'6" from the back tip of home plate
+  // pitching rubber, 24" wide, 60'6" from the back tip of home plate
   const rubber = new THREE.Mesh(
     new THREE.BoxGeometry(2, 0.08, 0.5),
     new THREE.MeshStandardMaterial({ color: 0xf2f2f2 })
@@ -132,7 +132,7 @@ function buildReferences() {
   }
   // Foul lines: coincide with the plate's 12" edges (45° toward 1B/3B). Drawn from
   // the front edge of the batter's box outward, so the line doesn't cross into the
-  // box — on a real field the box interrupts the line near home.
+  // box, on a real field the box interrupts the line near home.
   const zStart = zF;                 // box front edge, on the foul line (x = z here)
   const dEnd = 80 * Math.SQRT1_2;
   for (const s of [1, -1]) {
@@ -324,7 +324,7 @@ let scrub = 0;        // 0..1
 let playing = false;
 let speedMult = 0.1;  // default 0.1× (slow-mo)
 let showTunnel = true;    // ring dots at the 35 ft tunnel point
-let showTrails = true;    // pitch tracking lines (trails) — on by default
+let showTrails = true;    // pitch tracking lines (trails), on by default
 let currentView = 'tv';
 
 function applyLayers() { setScrub(scrub); }   // setScrub owns all per-object visibility
@@ -341,7 +341,7 @@ function setScrub(s) {
     // Trail geometry + fade colors are built once (full path) in buildPitcher.
     // Here we only reveal the first k segments (release -> ball) by capping the
     // instanced draw count, so the line grows with the ball and regenerates on
-    // replay — no per-frame geometry rebuild (which Line2 doesn't redraw reliably).
+    // replay, no per-frame geometry rebuild (which Line2 doesn't redraw reliably).
     o.trail.geometry.instanceCount = show ? k : 0;
     o.trail.visible = show && showTrails && k >= 1;
   }
@@ -425,7 +425,7 @@ const VIEWS = {
   // Umpire: behind the plate looking up the middle at the pitcher, zone close in
   // the foreground.
   ump: { pos: [0, 5.2, -9], tgt: [0, 3.0, 40], fov: 54 },
-  // Side: off the third-base line looking across the flight path — shows vertical
+  // Side: off the third-base line looking across the flight path, shows vertical
   // break and how the pitches split up/down from the tunnel point to the plate.
   side: { pos: [-56, 4, 25], tgt: [0, 3.6, 24], fov: 34 },
 };
@@ -443,7 +443,7 @@ function setView(name) {
   controls.update();
   document.querySelectorAll('#views button').forEach((b) =>
     b.classList.toggle('on', b.dataset.view === name));
-  // Side view wants the full width — auto-hide the card and collapse the leaderboard (desktop).
+  // Side view wants the full width, auto-hide the card and collapse the leaderboard (desktop).
   if (window.innerWidth > 820) { setCard(name === 'side'); setSidebar(name === 'side'); }
 }
 document.querySelectorAll('#views button').forEach((b) => {
@@ -465,7 +465,7 @@ $('card-show').onclick = () => setCard(false);
 $('sb-toggle').onclick = () =>
   setSidebar(!document.getElementById('tab-tunnels').classList.contains('no-sidebar'));
 
-// Camera lock — default LOCKED so a stray drag/touch doesn't disturb the fixed
+// Camera lock, default LOCKED so a stray drag/touch doesn't disturb the fixed
 // TV/Umpire views (and on phones lets a swipe scroll the page instead of rotating).
 const lockBtn = document.getElementById('lockview');
 function setLock(locked) {
@@ -535,7 +535,7 @@ function updateMetrics(data) {
   $('m-velospread').textContent = m.velo_spread.toFixed(1) + ' mph';
   $('m-entropy').textContent = m.entropy.toFixed(2);
 
-  // Deception percentiles within the SHOWN year + role — Statcast-style bars.
+  // Deception percentiles within the SHOWN year + role, Statcast-style bars.
   // Tunnel spread is inverted (tighter = better disguise -> higher on the bar).
   const role = data.role || 'RP';
   const yr = String(data._year);
@@ -551,7 +551,7 @@ function updateMetrics(data) {
   const slot = data.arm_slot ? ` · ${data.arm_slot} (${data.arm_angle}°)` : '';
   const roleLabel = role === 'SP' ? 'Starter' : 'Reliever';
   $('p-sub').textContent = `${yr} · ${data.throws}HP · ${roleLabel}${slot} · ${data.pitches.length} pitch types · ${data.n.toLocaleString()} thrown`;
-  pYearNote((currentYear && +yr !== +currentYear) ? `No ${currentYear} data — showing ${yr}` : '');
+  pYearNote((currentYear && +yr !== +currentYear) ? `No ${currentYear} data, showing ${yr}` : '');
 }
 
 // Year-fallback toast: show, then auto-fade after 5s.
@@ -594,11 +594,17 @@ function computeYear(year) {
 }
 
 function resort() {
+  // Display order follows the toggle (sortDir).
   YEAR_ROWS.sort((a, b) => ((a[sortKey] ?? -Infinity) - (b[sortKey] ?? -Infinity)) * sortDir);
+  // Rank number + heat color follow the metric's canonical good direction (dir),
+  // so a good value stays rank 1 / red no matter which way the list is scrolled.
+  const dir = sortCfg().dir;
+  const byQuality = [...YEAR_ROWS].sort(
+    (a, b) => ((a[sortKey] ?? -Infinity) - (b[sortKey] ?? -Infinity)) * dir);
   RANK_ALL = {}; RANK_ROLE = {};
-  YEAR_ROWS.forEach((p, i) => { RANK_ALL[p.id] = i + 1; });
+  byQuality.forEach((p, i) => { RANK_ALL[p.id] = i + 1; });
   ['SP', 'RP'].forEach((role) =>
-    YEAR_ROWS.filter((p) => p.role === role).forEach((p, i) => { RANK_ROLE[p.id] = i + 1; }));
+    byQuality.filter((p) => p.role === role).forEach((p, i) => { RANK_ROLE[p.id] = i + 1; }));
 }
 
 // Baseball Savant-aligned pitch colors, mapped by pitch type (overrides the
@@ -635,7 +641,7 @@ function renderPitcherYear(id) {
   buildPitcher({ id: pdata.id, name: pdata.name, throws: pdata.throws,
                  tunnel_y: pdata.tunnel_y, _year: year, ...pdata.years[year] });
   document.querySelectorAll('#list li').forEach((li) => li.classList.toggle('sel', +li.dataset.id === id));
-  // Keep whatever camera view is active — don't snap back to TV on pitcher switch.
+  // Keep whatever camera view is active, don't snap back to TV on pitcher switch.
 }
 
 // Diverging heat, matched to the Model Grades scale: top of the board (most
@@ -649,7 +655,7 @@ function heatColor(pct) {
   return `rgb(${c[0]},${c[1]},${c[2]})`;
 }
 
-// Savant-style diverging percentile bar — same look as the Model Grades tab.
+// Savant-style diverging percentile bar, same look as the Model Grades tab.
 function pctBar(pct) {
   const p = Math.min(100, Math.max(0, pct)), col = heatColor(p);
   return `<div class="m-bar">` +

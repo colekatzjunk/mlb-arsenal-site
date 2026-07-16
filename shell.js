@@ -1,4 +1,4 @@
-// Shell — top-level tab switching + cross-tab pitcher sync.
+// Shell: top-level tab switching + cross-tab pitcher sync.
 // Tabs (Tunnels / Metrics) each own a full sidebar+stage; app.js and metrics.js
 // expose window.ArsenalTunnels / window.ArsenalMetrics as thin bridges.
 
@@ -19,9 +19,9 @@ function showTab(tab) {
 
   const api = tab === 'tunnels' ? window.ArsenalTunnels
             : tab === 'metrics' ? window.ArsenalMetrics
-            : null;   // Guide is static content — no data bridge.
+            : null;   // Guide is static content, no data bridge.
   if (!api) return;
-  // The tunnel WebGL canvas was 0-sized while hidden — refit on reveal.
+  // The tunnel WebGL canvas was 0-sized while hidden, refit on reveal.
   if (tab === 'tunnels' && api.resize) requestAnimationFrame(api.resize);
   // Carry the selected pitcher across if this tab has him.
   if (currentId != null && api.has(currentId)) api.select(currentId);
@@ -31,7 +31,7 @@ document.querySelectorAll('#tabs button').forEach((b) => {
   b.onclick = () => showTab(b.dataset.tab);
 });
 
-// Global Season selector (masthead) — drives BOTH tabs so they stay in sync.
+// Global Season selector (masthead), drives BOTH tabs so they stay in sync.
 // window.__arsenalYear is the source of truth; each tab reads it on boot, so a
 // year change made while a tab is still loading isn't lost (it picks it up).
 window.__arsenalYear = 2026;
