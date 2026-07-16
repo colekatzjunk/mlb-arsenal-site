@@ -175,13 +175,14 @@ function renderCard() {
   const hv = yr.headline;
   const hpct = headlinePct(yr);
 
+  const hcol = hpct != null ? pctColor(hpct) : null;
   let html = '';
   html += `<div class="m-hero" data-desc="${DESC.pplus}">` +
-    `<span class="hn">${hv != null ? Math.round(hv) : '—'}</span>` +
+    `<span class="hn"${hcol ? ` style="color:${hcol}"` : ''}>${hv != null ? Math.round(hv) : '—'}</span>` +
     `<div class="hmeta">` +
       `<span class="hlab">Pitching+ · ${y}</span>` +
       (hpct != null
-        ? `<span class="hpct"><b>${ordinal(hpct)}</b> percentile among ${yr.role === 'SP' ? 'starters' : 'relievers'}</span>`
+        ? `<span class="hpct"><b style="color:${hcol}">${ordinal(hpct)}</b> percentile among ${yr.role === 'SP' ? 'starters' : 'relievers'}</span>`
         : '') +
     `</div></div>`;
 
