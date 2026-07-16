@@ -59,6 +59,26 @@ function syncDefault() {
 }
 syncDefault();
 
+// ── Mobile leaderboard drawer ───────────────────────────────────────
+// On narrow screens each sidebar is an off-canvas drawer; a toolbar button
+// opens it, and it closes on backdrop tap, pitcher pick, or tab switch.
+(function () {
+  const backdrop = document.getElementById('drawer-backdrop');
+  const closeDrawers = () => {
+    document.getElementById('sidebar')?.classList.remove('open');
+    document.getElementById('m-sidebar')?.classList.remove('open');
+    backdrop?.classList.remove('on');
+  };
+  const openDrawer = (el) => { if (el) { el.classList.add('open'); backdrop?.classList.add('on'); } };
+  document.getElementById('lb-toggle')?.addEventListener('click',
+    () => openDrawer(document.getElementById('sidebar')));
+  document.getElementById('m-lb-toggle')?.addEventListener('click',
+    () => openDrawer(document.getElementById('m-sidebar')));
+  backdrop?.addEventListener('click', closeDrawers);
+  window.addEventListener('arsenal:picked', closeDrawers);
+  document.querySelectorAll('#tabs button').forEach((b) => b.addEventListener('click', closeDrawers));
+})();
+
 // Deep-link: index.html#metrics opens the Metrics tab. metrics.js/app.js boot
 // async, so defer the initial switch until their bridges are exposed.
 if (location.hash === '#metrics') {

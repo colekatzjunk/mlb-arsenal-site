@@ -62,6 +62,7 @@
       <div id="canvas-holder"></div>
 
       <header id="topbar">
+        <button id="lb-toggle" class="lb-toggle" aria-label="Open leaderboard">☰ Pitchers</button>
         <div id="who">
           <h2 id="p-name">—</h2>
           <span id="p-sub"></span>
@@ -70,6 +71,7 @@
           <button data-view="tv" class="on">TV View</button>
           <button data-view="ump">Umpire View</button>
         </div>
+        <button id="lockview" class="lockview locked" title="Lock or unlock camera rotation">🔒 View locked</button>
       </header>
 
       <div id="legend"></div>
@@ -150,6 +152,7 @@
 
     <main id="m-stage">
       <header id="m-topbar">
+        <button id="m-lb-toggle" class="lb-toggle" aria-label="Open leaderboard">☰ Pitchers</button>
         <div id="m-who">
           <h2 id="mp-name">—</h2>
           <span id="mp-sub"></span>
@@ -158,6 +161,8 @@
       <div id="m-card"></div>
     </main>
   </div>
+
+  <div id="drawer-backdrop"></div>
 
 </div>
 

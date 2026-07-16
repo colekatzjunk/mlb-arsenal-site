@@ -439,6 +439,17 @@ document.querySelectorAll('#views button').forEach((b) => {
   b.onclick = () => setView(b.dataset.view);
 });
 
+// Camera lock — default LOCKED so a stray drag/touch doesn't disturb the fixed
+// TV/Umpire views (and on phones lets a swipe scroll the page instead of rotating).
+const lockBtn = document.getElementById('lockview');
+function setLock(locked) {
+  controls.enabled = !locked;
+  lockBtn.classList.toggle('locked', locked);
+  lockBtn.textContent = locked ? '🔒 View locked' : '🔓 View free';
+}
+lockBtn.onclick = () => setLock(controls.enabled);   // enabled(free) -> lock; locked -> free
+setLock(true);
+
 // speed buttons
 document.querySelectorAll('#speeds button').forEach((b) => {
   b.onclick = () => {
