@@ -325,6 +325,7 @@ let playing = false;
 let speedMult = 0.1;  // default 0.1× (slow-mo)
 let showTunnel = true;    // ring dots at the 35 ft tunnel point
 let showTrails = true;    // pitch tracking lines (trails) — on by default
+let currentView = 'tv';
 
 function applyLayers() { setScrub(scrub); }   // setScrub owns all per-object visibility
 
@@ -428,16 +429,21 @@ const VIEWS = {
   // break and how the pitches split up/down from the tunnel point to the plate.
   side: { pos: [-56, 4, 25], tgt: [0, 3.6, 24], fov: 34 },
 };
+// Vertical fov that keeps ~34 ft of flight in frame on each side of the target, so the
+// full release→plate path fits on any aspect ratio (crucial on narrow phone screens).
+const sideFov = (aspect) => 2 * Math.atan((34 / 56) / aspect) * 180 / Math.PI;
+
 function setView(name) {
   const v = VIEWS[name]; if (!v) return;
+  currentView = name;
   camera.position.set(...v.pos);
   controls.target.set(...v.tgt);
-  camera.fov = v.fov || 42;
+  camera.fov = name === 'side' ? sideFov(camera.aspect) : (v.fov || 42);
   camera.updateProjectionMatrix();
   controls.update();
   document.querySelectorAll('#views button').forEach((b) =>
     b.classList.toggle('on', b.dataset.view === name));
-  // Side view wants the full width — auto-hide the card and collapse the leaderboard.
+  // Side view wants the full width — auto-hide the card and collapse the leaderboard (desktop).
   if (window.innerWidth > 820) { setCard(name === 'side'); setSidebar(name === 'side'); }
 }
 document.querySelectorAll('#views button').forEach((b) => {
@@ -733,7 +739,9 @@ function setYear(year) {   // driven by the shell's masthead Season control
 function resize() {
   const w = holder.clientWidth, h = holder.clientHeight;
   renderer.setSize(w, h);
-  camera.aspect = w / h; camera.updateProjectionMatrix();
+  camera.aspect = w / h;
+  if (currentView === 'side') camera.fov = sideFov(camera.aspect);   // refit flight on any aspect
+  camera.updateProjectionMatrix();
   for (const o of pitchObjs) o.mat.resolution.set(w, h);
 }
 window.addEventListener('resize', resize);
