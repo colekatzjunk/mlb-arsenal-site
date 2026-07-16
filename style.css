@@ -354,7 +354,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   #masthead{flex:0 0 auto;height:auto;min-height:48px;flex-wrap:wrap;padding:8px 12px;gap:8px}
   .brand h1{font-size:12.5px}
   #tabs button{padding:7px 11px;font-size:11.5px}
-  .mast-meta{order:3;width:100%;justify-content:center;gap:6px}
+  .mast-meta{order:3;width:100%;justify-content:center;gap:5px}
+  .mast-meta .yr-label{display:none}
+  #yearsel button{padding:5px 8px;font-size:11px}
 
   /* Single column; leaderboard becomes an off-canvas drawer */
   .workspace{display:block;height:auto}
@@ -371,17 +373,21 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   /* Pitcher Arsenal stage: stack overlays into a scrollable column */
   #stage{position:static;display:flex;flex-direction:column;overflow:visible;height:auto}
   #topbar{position:static;order:1;pointer-events:auto;display:flex;align-items:center;
-    flex-wrap:wrap;gap:10px;padding:10px 14px 4px}
-  #who{flex:1 1 100%;min-width:0}
+    flex-wrap:wrap;gap:8px 10px;padding:10px 14px 6px}
+  #lb-toggle{order:1}
+  #lockview{order:2;margin-left:auto}
+  #who{order:3;flex:1 1 100%;min-width:0}
   #who h2{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   #who #p-sub{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  #views{flex:0 0 auto}
+  #views{order:4;flex:0 0 auto}
   #legend{position:static;order:2;margin:2px 14px;min-width:0;max-width:100%;flex-direction:row;
     flex-wrap:nowrap;overflow-x:auto;background:transparent;border:none;gap:2px}
   #legend .lg{border:none;padding:4px 10px 4px 0;flex:0 0 auto}
   #canvas-holder{position:relative;inset:auto;order:3;width:100%;max-width:100%;min-width:0;
     height:44vh;flex:0 0 auto;overflow:hidden}
-  #canvas-holder canvas{width:100%!important;height:100%!important;display:block}
+  /* Let vertical swipes scroll the page even over the 3D canvas (OrbitControls
+     otherwise sets touch-action:none, trapping scroll and hiding the card below). */
+  #canvas-holder canvas{width:100%!important;height:100%!important;display:block;touch-action:pan-y!important}
   #stage,#m-stage,#metrics,#controls,#topbar{min-width:0;max-width:100%}
   #metrics{position:static;order:4;width:auto;margin:10px 14px 0}
   #controls{position:static;order:5;background:none;display:flex;flex-wrap:wrap;
