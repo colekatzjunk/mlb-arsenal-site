@@ -529,7 +529,8 @@ function poolPct(key, val, role, yr) {
 
 function updateMetrics(data) {
   const m = data.metrics;
-  $('m-decep').textContent = m.deception_ratio.toFixed(1) + '×';
+  const lateDiv = m.plate_spread - m.tunnel_spread;
+  $('m-latediv').textContent = lateDiv.toFixed(2) + ' ft';
   $('m-tunnel').textContent = m.tunnel_spread.toFixed(2) + ' ft';
   $('m-plate').textContent = m.plate_spread.toFixed(2) + ' ft';
   $('m-entropy').textContent = m.entropy.toFixed(2);
@@ -539,7 +540,7 @@ function updateMetrics(data) {
   const role = data.role || 'RP';
   const yr = String(data._year);
   if (INDEX) {
-    $('m-pctbar').innerHTML = pctBar(poolPct('deception_ratio', m.deception_ratio, role, yr));
+    $('m-pctbar').innerHTML = pctBar(poolPct('late_divergence', lateDiv, role, yr));
     $('m-tunnelbar').innerHTML = pctBar(100 - poolPct('tunnel_spread', m.tunnel_spread, role, yr));
     $('m-platebar').innerHTML = pctBar(poolPct('plate_spread', m.plate_spread, role, yr));
     $('m-entbar').innerHTML = pctBar(poolPct('entropy', m.entropy, role, yr));
@@ -575,12 +576,12 @@ let roleFilter = 'SP';   // default view: starting pitchers
 
 // Sortable leaderboard metrics. dir: -1 = high→low (best-first default), +1 = low→high.
 const SORTS = [
-  { key: 'deception_ratio', label: 'Deception ratio',  col: 'Dec', dir: -1, fmt: (v) => `<b>${v.toFixed(1)}</b><i>×</i>` },
+  { key: 'late_divergence', label: 'Late divergence',  col: 'LD',  dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
   { key: 'tunnel_spread',   label: 'Tunnel spread',    col: 'Tun', dir: +1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
   { key: 'plate_spread',    label: 'Plate spread',     col: 'Plt', dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
   { key: 'entropy',         label: 'Arsenal entropy',  col: 'Ent', dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
 ];
-let sortKey = 'deception_ratio';
+let sortKey = 'late_divergence';
 let sortDir = -1;
 const sortCfg = () => SORTS.find((s) => s.key === sortKey) || SORTS[0];
 
