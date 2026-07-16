@@ -373,11 +373,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .guide-block h2{font-size:19px;font-weight:700;letter-spacing:-.2px;margin:0 0 14px}
 .def-tbl tr.def-lead td{padding:13px 16px;color:var(--muted);font-size:13px;
   line-height:1.5;background:rgba(255,255,255,.02);border-bottom:1px solid var(--line)}
-.corr-note{font-size:13px;line-height:1.6;color:var(--muted);margin:0 0 14px}
-.def-tbl .corr{margin-top:9px;padding-top:8px;border-top:1px dashed var(--line-2);
-  font-size:12.5px;line-height:1.5;color:#a9c1e6}
-.def-tbl .corr b{color:#5b8fd6;font-weight:800;font-size:11px;letter-spacing:.5px;
-  text-transform:uppercase;margin-right:2px}
+.corr-note{font-size:13px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+/* Predictive Power bars */
+.pp{margin:0 0 16px}
+.pp-title{font-size:13.5px;color:var(--muted);margin:0 0 6px}
+.pp-title b{color:var(--ink);font-weight:700}
+.pp-row{display:grid;grid-template-columns:132px 1fr 40px;align-items:center;gap:11px;margin:5px 0}
+.pp-tag{font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp-track{height:13px;background:#1b2431;border-radius:7px;overflow:hidden}
+.pp-fill{display:block;height:100%;background:#3a4a5f;border-radius:7px}
+.pp-fill.win{background:#33c46e}
+.pp-r{font-size:13px;font-weight:700;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.pp-r.win{color:#33c46e;font-size:15px}
 
 /* Definition tables: metric | definition */
 .def-tbl{width:100%;border-collapse:collapse;border:1px solid var(--line);
