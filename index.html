@@ -209,58 +209,58 @@
 
         <section class="guide-block">
           <h2>Pitch Model Metrics</h2>
-          <p class="pp-pool">Each grade below also lists its predictiveness. Every figure is a year-over-year correlation (r), where <b>A &rarr; B</b> means how well A in one season predicts B the next. So <b>Pitching+ &rarr; ERA</b> is the grade forecasting next year's ERA, shown next to <b>ERA &rarr; ERA</b>, the raw stat predicting itself. Based on pitchers with at least 75 innings in both seasons, 2021 through 2026.</p>
+          <p class="pp-pool">Each grade below also lists its predictiveness. Every figure is a year-over-year correlation (r), where <b>A &rarr; B</b> means how well A in one season predicts B the next. So <b>Pitching+ &rarr; ERA</b> is the grade forecasting next year's ERA, shown next to <b>ERA &rarr; ERA</b>, the raw stat predicting itself, and the bolded side is the stronger predictor. A negative sign only means the two move in opposite directions (a higher grade, a lower ERA), so it is the size of the number that reflects predictive strength. This is based on pitchers with at least 75 innings in both seasons, 2021 through 2026.</p>
           <table class="def-tbl">
             <thead><tr><th>Metric</th><th>Definition</th></tr></thead>
             <tbody>
               <tr>
                 <th>Pitching+</th>
-                <td>Every pitch thrown is graded by a chain of models predicting swing probability, whiff/foul/in-play probability, called-strike probability, and the outcome of balls put in play (single, double, out, etc.), which combine into an expected run value for the pitch. Inputs to these models include the pitch's physical characteristics, its deception relative to the rest of the pitcher's arsenal, its location, and context such as the count and batter handedness. Weighted toward his most recent pitches, these run-value grades are averaged and scaled so that 100 is league average and higher is better.<div class="tldr"><b>TLDR:</b> a pitcher's overall pitch quality, where 100 is average.</div><div class="corr"><b>Pitching+ &rarr; ERA: r = .44</b> &nbsp;vs&nbsp; ERA &rarr; ERA: r = .25</div></td>
+                <td>Every pitch thrown is graded by a chain of models predicting swing probability, whiff/foul/in-play probability, called-strike probability, and the outcome of balls put in play (single, double, out, etc.), which combine into an expected run value for the pitch. Inputs to these models include the pitch's physical characteristics, its deception relative to the rest of the pitcher's arsenal, its location, and context such as the count and batter handedness. Weighted toward his most recent pitches, these run-value grades are averaged and scaled so that 100 is league average and higher is better.<div class="tldr"><b>TLDR:</b> a pitcher's overall pitch quality, where 100 is average.</div><div class="corr">Pitching+ &rarr; ERA: <b>r = &minus;.44</b> &nbsp;vs&nbsp; ERA &rarr; ERA: r = .25</div></td>
               </tr>
               <tr>
                 <th>Stuff+</th>
-                <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div><div class="corr"><b>Stuff+ &rarr; ERA: r = .40</b> &nbsp;vs&nbsp; ERA &rarr; ERA: r = .25</div></td>
+                <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div><div class="corr">Stuff+ &rarr; ERA: <b>r = &minus;.40</b> &nbsp;vs&nbsp; ERA &rarr; ERA: r = .25</div></td>
               </tr>
               <tr class="def-lead"><td colspan="2">Each grade below rates a pitcher's ability at one specific outcome. A higher grade is always better.</td></tr>
               <tr>
                 <th>K+</th>
-                <td>A pitcher's ability to generate strikeouts.<div class="corr"><b>K+ &rarr; K%: r = .73</b> &nbsp;vs&nbsp; K% &rarr; K%: r = .73</div></td>
+                <td>A pitcher's ability to generate strikeouts.<div class="corr">K+ &rarr; K%: r = .73 &nbsp;vs&nbsp; K% &rarr; K%: r = .73</div></td>
               </tr>
               <tr>
                 <th>BB+</th>
-                <td>A pitcher's ability to prevent walks. A higher BB+ indicates better walk prevention.<div class="corr"><b>BB+ &rarr; BB%: r = .58</b> &nbsp;vs&nbsp; BB% &rarr; BB%: r = .54</div></td>
+                <td>A pitcher's ability to prevent walks. A higher BB+ indicates better walk prevention.<div class="corr">BB+ &rarr; BB%: <b>r = &minus;.58</b> &nbsp;vs&nbsp; BB% &rarr; BB%: r = .54</div></td>
               </tr>
               <tr>
                 <th>SwStr+</th>
-                <td>A pitcher's ability to generate swings and misses.<div class="corr"><b>SwStr+ &rarr; SwStr%: r = .75</b> &nbsp;vs&nbsp; SwStr% &rarr; SwStr%: r = .76</div></td>
+                <td>A pitcher's ability to generate swings and misses.<div class="corr">SwStr+ &rarr; SwStr%: r = .75 &nbsp;vs&nbsp; SwStr% &rarr; SwStr%: <b>r = .76</b></div></td>
               </tr>
               <tr>
                 <th>Whiff+</th>
-                <td>A pitcher's ability to make hitters miss when they swing.<div class="corr"><b>Whiff+ &rarr; Whiff%: r = .70</b> &nbsp;vs&nbsp; Whiff% &rarr; Whiff%: r = .76</div></td>
+                <td>A pitcher's ability to make hitters miss when they swing.<div class="corr">Whiff+ &rarr; Whiff%: r = .70 &nbsp;vs&nbsp; Whiff% &rarr; Whiff%: <b>r = .76</b></div></td>
               </tr>
               <tr>
                 <th>CalledStrike+</th>
-                <td>A pitcher's ability to earn called strikes on pitches the hitter takes.<div class="corr"><b>CalledStrike+ &rarr; CS%: r = .62</b> &nbsp;vs&nbsp; CS% &rarr; CS%: r = .65</div></td>
+                <td>A pitcher's ability to earn called strikes on pitches the hitter takes.<div class="corr">CalledStrike+ &rarr; CS%: r = .62 &nbsp;vs&nbsp; CS% &rarr; CS%: <b>r = .65</b></div></td>
               </tr>
               <tr>
                 <th>HardHit+</th>
-                <td>A pitcher's ability to suppress hard contact (95+ mph exit velocity).<div class="corr"><b>HardHit+ &rarr; HardHit%: r = .40</b> &nbsp;vs&nbsp; HardHit% &rarr; HardHit%: r = .42</div></td>
+                <td>A pitcher's ability to suppress hard contact (95+ mph exit velocity).<div class="corr">HardHit+ &rarr; HardHit%: r = &minus;.40 &nbsp;vs&nbsp; HardHit% &rarr; HardHit%: <b>r = .42</b></div></td>
               </tr>
               <tr>
                 <th>Scorched+</th>
-                <td>A pitcher's ability to suppress scorched contact (105+ mph exit velocity).<div class="corr"><b>Scorched+ &rarr; 105+ rate: r = .41</b> &nbsp;vs&nbsp; 105+ rate &rarr; 105+ rate: r = .26</div></td>
+                <td>A pitcher's ability to suppress scorched contact (105+ mph exit velocity).<div class="corr">Scorched+ &rarr; 105+ rate: <b>r = &minus;.41</b> &nbsp;vs&nbsp; 105+ rate &rarr; 105+ rate: r = .26</div></td>
               </tr>
               <tr>
                 <th>Soft+</th>
-                <td>A pitcher's ability to induce soft contact (80 mph or less exit velocity).<div class="corr"><b>Soft+ &rarr; Soft%: r = .55</b> &nbsp;vs&nbsp; Soft% &rarr; Soft%: r = .53</div></td>
+                <td>A pitcher's ability to induce soft contact (80 mph or less exit velocity).<div class="corr">Soft+ &rarr; Soft%: <b>r = .55</b> &nbsp;vs&nbsp; Soft% &rarr; Soft%: r = .53</div></td>
               </tr>
               <tr>
                 <th>Weak+</th>
-                <td>A pitcher's ability to induce weak contact (75 mph or less exit velocity).<div class="corr"><b>Weak+ &rarr; Weak%: r = .56</b> &nbsp;vs&nbsp; Weak% &rarr; Weak%: r = .50</div></td>
+                <td>A pitcher's ability to induce weak contact (75 mph or less exit velocity).<div class="corr">Weak+ &rarr; Weak%: <b>r = .56</b> &nbsp;vs&nbsp; Weak% &rarr; Weak%: r = .50</div></td>
               </tr>
               <tr>
                 <th>GB+</th>
-                <td>A pitcher's ability to induce ground balls (launch angle below 10 degrees).<div class="corr"><b>GB+ &rarr; GB%: r = .71</b> &nbsp;vs&nbsp; GB% &rarr; GB%: r = .74</div></td>
+                <td>A pitcher's ability to induce ground balls (launch angle below 10 degrees).<div class="corr">GB+ &rarr; GB%: r = .71 &nbsp;vs&nbsp; GB% &rarr; GB%: <b>r = .74</b></div></td>
               </tr>
             </tbody>
           </table>
