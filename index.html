@@ -220,8 +220,29 @@
                 <th>Stuff+</th>
                 <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div></td>
               </tr>
+              <tr>
+                <th>K+</th>
+                <td>Pitches are graded on their expected contribution to strikeout probability as opposed to run value.</td>
+              </tr>
+              <tr>
+                <th>BB+</th>
+                <td>Pitches are graded on their expected contribution to walk probability. A higher BB+ value indicates better walk prevention ability.</td>
+              </tr>
+              <tr>
+                <th>Whiff+</th>
+                <td>Pitches are graded on their probability to induce a swing and miss.</td>
+              </tr>
+              <tr>
+                <th>Miss+</th>
+                <td>Pitches are graded on their probability to induce a miss given a swing.</td>
+              </tr>
+              <tr>
+                <th>CalledStrike+</th>
+                <td>Pitches are graded on their probability to not draw a swing but earn a called strike from the umpire.</td>
+              </tr>
             </tbody>
           </table>
+          <p class="guide-note">All grades are scaled against every qualified pitcher, starters and relievers pooled together: 100 is the average pitcher and each 10 points is one standard deviation. A grade therefore means the same thing regardless of role, though the percentile shown on the Model Grades tab ranks a pitcher within his own role.</p>
         </section>
 
       </article>
