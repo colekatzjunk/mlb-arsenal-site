@@ -371,7 +371,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .guide-title{font-size:28px;font-weight:800;letter-spacing:-.4px;margin:0 0 26px}
 .guide-block{margin:0 0 34px}
 .guide-block h2{font-size:19px;font-weight:700;letter-spacing:-.2px;margin:0 0 14px}
-.guide-intro{font-size:14px;line-height:1.6;color:#cdd6e2;margin:0 0 14px}
+.def-tbl tr.def-lead td{padding:13px 16px;color:var(--muted);font-size:13px;
+  line-height:1.5;background:rgba(255,255,255,.02);border-bottom:1px solid var(--line)}
 
 /* Definition tables: metric | definition */
 .def-tbl{width:100%;border-collapse:collapse;border:1px solid var(--line);
