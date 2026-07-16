@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arsenal Lab — Statcast pitcher analytics</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+
+  <header id="masthead">
+    <div class="brand">
+      <span class="ball" aria-hidden="true"></span>
+      <div class="brand-text">
+        <h1>MLB Arsenal Analysis</h1>
+      </div>
+    </div>
+    <nav id="tabs" class="segmented">
+      <button data-tab="tunnels" class="on">Pitcher Arsenal</button>
+      <button data-tab="metrics">Model Grades</button>
+    </nav>
+    <div class="mast-meta">
+      <span class="yr-label">Season</span>
+      <div id="yearsel" class="segmented sm">
+        <button data-year="2021">’21</button>
+        <button data-year="2022">’22</button>
+        <button data-year="2023">’23</button>
+        <button data-year="2024">’24</button>
+        <button data-year="2025">’25</button>
+        <button data-year="2026" class="on">’26</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ TUNNELS TAB ══ (unchanged tunnel viewer) ══════════════════ -->
+  <div id="tab-tunnels" class="workspace on">
+    <aside id="sidebar">
+      <input id="search" type="search" placeholder="Search pitcher" autocomplete="off" />
+
+      <div class="side-sec grow">
+        <div class="lb-head">
+          <h2>Leaderboard <span id="count" class="lb-count"></span></h2>
+          <div id="rolefilter" class="segmented sm">
+            <button data-role="all">All</button>
+            <button data-role="SP" class="on">SP</button>
+            <button data-role="RP">RP</button>
+          </div>
+        </div>
+        <div class="sort-row">
+          <span class="sort-lab">Sort</span>
+          <select id="sortsel" class="sortsel"></select>
+          <button id="sortdir" class="sortdir" title="Toggle high→low / low→high">▼</button>
+        </div>
+        <div class="list-head"><span>#</span><span>Pitcher</span><span class="r" id="lh-metric">Dec</span></div>
+        <ul id="list"></ul>
+      </div>
+    </aside>
+
+    <main id="stage">
+      <div id="canvas-holder"></div>
+
+      <header id="topbar">
+        <div id="who">
+          <h2 id="p-name">—</h2>
+          <span id="p-sub"></span>
+        </div>
+        <div id="views" class="segmented">
+          <button data-view="tv" class="on">TV View</button>
+          <button data-view="ump">Umpire View</button>
+        </div>
+      </header>
+
+      <div id="legend"></div>
+
+      <section id="metrics">
+        <div class="pct-cap" id="m-pctcap">PERCENTILE RANK</div>
+        <div class="card-leg"><span class="poor">POOR</span><span class="avg">AVERAGE</span><span class="great">GREAT</span></div>
+
+        <div class="dm-list">
+          <div class="dm" title="How much wider his pitches finish at the plate vs. how tightly they leave the hand — the headline deception number. Percentile among this role and season.">
+            <div class="dm-h"><span>Deception ratio</span><b id="m-decep">—</b></div>
+            <div id="m-pctbar" class="card-bar"></div>
+          </div>
+          <div class="dm" title="Average gap between his pitches 35 ft in front of home, where the arsenal is still converged. Tighter (smaller) means a better disguise.">
+            <div class="dm-h"><span>Tunnel spread @ 35 ft from home</span><b id="m-tunnel">—</b></div>
+            <div id="m-tunnelbar" class="card-bar"></div>
+          </div>
+          <div class="dm" title="The average distance between where his different pitch types cross the plate, weighted toward the pairings he throws most often. Bigger = his pitches finish farther apart.">
+            <div class="dm-h"><span>Plate spread</span><b id="m-plate">—</b></div>
+            <div id="m-platebar" class="card-bar"></div>
+          </div>
+          <div class="dm" title="Reflects both how many pitch types he throws and how evenly he uses them (Shannon entropy) — more pitches used more evenly scores higher. A diversity descriptor, not a quality grade.">
+            <div class="dm-h"><span>Arsenal entropy</span><b id="m-entropy">—</b></div>
+            <div id="m-entbar" class="card-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer id="controls">
+        <button id="play" class="primary" title="Play / pause (space)">▶</button>
+        <button id="commit" title="Freeze at the 35 ft commit point">Freeze at commit</button>
+        <div class="scrub">
+          <input id="scrub" type="range" min="0" max="1000" value="0" />
+          <div id="ticks"><span id="tick-commit">commit</span><span id="tick-plate">plate</span></div>
+        </div>
+        <div class="ctl-group">
+          <span class="ctl-label">Speed</span>
+          <div id="speeds" class="segmented">
+            <button data-speed="10" class="on">0.1×</button>
+            <button data-speed="25">¼×</button>
+            <button data-speed="50">½×</button>
+            <button data-speed="100">1×</button>
+          </div>
+        </div>
+        <div class="ctl-group">
+          <span class="ctl-label">Show</span>
+          <div id="layers" class="segmented">
+            <button data-layer="tunnel" class="on" title="Dots at the 35 ft tunnel point">Tunnel dots</button>
+            <button data-layer="trails" title="Pitch tracking lines">Trails</button>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ══ METRICS TAB ══ (cascade+ metric profile) ═════════════════ -->
+  <div id="tab-metrics" class="workspace">
+    <aside id="m-sidebar">
+      <input id="m-search" type="search" placeholder="Search pitcher" autocomplete="off" />
+      <div class="side-sec grow">
+        <div class="lb-head">
+          <h2>Leaderboard <span id="m-count" class="lb-count"></span></h2>
+          <div id="m-rolefilter" class="segmented sm">
+            <button data-role="all">All</button>
+            <button data-role="SP" class="on">SP</button>
+            <button data-role="RP">RP</button>
+          </div>
+        </div>
+        <div class="sort-row">
+          <span class="sort-lab">Sort</span>
+          <select id="m-sortsel" class="sortsel"></select>
+          <button id="m-sortdir" class="sortdir" title="Toggle high→low / low→high">▼</button>
+        </div>
+        <div class="list-head"><span>#</span><span>Pitcher</span><span class="r" id="mlh-metric">P+</span></div>
+        <ul id="m-list"></ul>
+      </div>
+    </aside>
+
+    <main id="m-stage">
+      <header id="m-topbar">
+        <div id="m-who">
+          <h2 id="mp-name">—</h2>
+          <span id="mp-sub"></span>
+        </div>
+      </header>
+      <div id="m-card"></div>
+    </main>
+  </div>
+
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.js",
+    "three/addons/": "./vendor/addons/"
+  }
+}
+</script>
+<script type="module" src="app.js"></script>
+<script type="module" src="metrics.js"></script>
+<script type="module" src="shell.js"></script>
+</body>
+</html>
