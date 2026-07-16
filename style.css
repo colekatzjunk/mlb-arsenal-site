@@ -378,12 +378,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .pp{margin:0 0 16px}
 .pp-title{font-size:13.5px;color:var(--muted);margin:0 0 6px}
 .pp-title b{color:var(--ink);font-weight:700}
-.pp-row{display:grid;grid-template-columns:132px 1fr 40px;align-items:center;gap:11px;margin:5px 0}
-.pp-tag{font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp-row{display:grid;grid-template-columns:164px 1fr 54px;align-items:center;gap:11px;margin:5px 0}
+.pp-tag{font-size:11px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pp-track{height:13px;background:#1b2431;border-radius:7px;overflow:hidden}
 .pp-fill{display:block;height:100%;background:#3a4a5f;border-radius:7px}
 .pp-fill.win{background:#33c46e}
 .pp-r{font-size:13px;font-weight:700;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.pp-r::before{content:"r ";font-size:9px;color:var(--dim);font-weight:600}
 .pp-r.win{color:#33c46e;font-size:15px}
 
 /* Definition tables: metric | definition */

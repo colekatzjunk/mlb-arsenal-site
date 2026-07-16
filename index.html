@@ -220,46 +220,46 @@
                 <th>Stuff+</th>
                 <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div></td>
               </tr>
-              <tr class="def-lead"><td colspan="2">The grades below each focus on one specific outcome for every pitch thrown. A higher grade is always better.</td></tr>
+              <tr class="def-lead"><td colspan="2">Each grade below rates a pitcher's ability at one specific outcome. A higher grade is always better.</td></tr>
               <tr>
                 <th>K+</th>
-                <td>A pitch's expected contribution to strikeout probability, as opposed to run value.</td>
+                <td>A pitcher's ability to generate strikeouts.</td>
               </tr>
               <tr>
                 <th>BB+</th>
-                <td>A pitch's expected contribution to walk probability. A higher BB+ value indicates better walk prevention ability.</td>
+                <td>A pitcher's ability to prevent walks. A higher BB+ indicates better walk prevention.</td>
               </tr>
               <tr>
                 <th>Whiff+</th>
-                <td>The likelihood a pitch induces a swing and miss.</td>
+                <td>A pitcher's ability to generate swings and misses.</td>
               </tr>
               <tr>
                 <th>Miss+</th>
-                <td>Given a swing, the likelihood the pitch is missed.</td>
+                <td>A pitcher's ability to make hitters miss when they swing.</td>
               </tr>
               <tr>
                 <th>CalledStrike+</th>
-                <td>The likelihood a pitch is taken and called a strike by the umpire.</td>
+                <td>A pitcher's ability to earn called strikes on pitches the hitter takes.</td>
               </tr>
               <tr>
                 <th>HardHit+</th>
-                <td>How well a pitch suppresses exit velocities of 95+ mph on balls in play.</td>
+                <td>A pitcher's ability to suppress hard contact (95+ mph exit velocity).</td>
               </tr>
               <tr>
                 <th>Scorched+</th>
-                <td>How well a pitch suppresses exit velocities of 105+ mph on balls in play.</td>
+                <td>A pitcher's ability to suppress scorched contact (105+ mph exit velocity).</td>
               </tr>
               <tr>
                 <th>Soft+</th>
-                <td>The likelihood a pitch induces an exit velocity of 80 mph or less on balls in play.</td>
+                <td>A pitcher's ability to induce soft contact (80 mph or less exit velocity).</td>
               </tr>
               <tr>
                 <th>Weak+</th>
-                <td>The likelihood a pitch induces an exit velocity of 75 mph or less on balls in play.</td>
+                <td>A pitcher's ability to induce weak contact (75 mph or less exit velocity).</td>
               </tr>
               <tr>
                 <th>GB+</th>
-                <td>The likelihood a pitch induces a launch angle below 10 degrees on balls in play.</td>
+                <td>A pitcher's ability to induce ground balls (launch angle below 10 degrees).</td>
               </tr>
             </tbody>
           </table>
@@ -268,61 +268,67 @@
 
         <section class="guide-block">
           <h2>Predictive Power</h2>
-          <p class="corr-note">How well each metric predicts the matching real stat the following season, versus how well that stat predicts itself, for pitchers with 75+ innings in both seasons (pooled, 2021 through 2026). A longer green bar is more predictive. Where a metric ties or trails the raw stat on its own, the two combined still come out ahead.</p>
+          <p class="corr-note">How well each metric predicts the matching real stat the next season, versus that stat predicting itself, and the two combined. For pitchers with 75+ innings in both seasons, pooled across 2021 through 2026. Figures are the correlation, r; a longer green bar is more predictive.</p>
 
           <div class="pp"><div class="pp-title"><b>Pitching+</b> predicting next-season ERA</div>
             <div class="pp-row"><span class="pp-tag">Pitching+</span><span class="pp-track"><span class="pp-fill win" style="width:44%"></span></span><span class="pp-r win">.44</span></div>
-            <div class="pp-row"><span class="pp-tag">ERA alone</span><span class="pp-track"><span class="pp-fill" style="width:25%"></span></span><span class="pp-r">.25</span></div></div>
+            <div class="pp-row"><span class="pp-tag">ERA alone</span><span class="pp-track"><span class="pp-fill" style="width:25%"></span></span><span class="pp-r">.25</span></div>
+            <div class="pp-row"><span class="pp-tag">Pitching+ and ERA</span><span class="pp-track"><span class="pp-fill win" style="width:44%"></span></span><span class="pp-r win">.44</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>Stuff+</b> predicting next-season ERA</div>
             <div class="pp-row"><span class="pp-tag">Stuff+</span><span class="pp-track"><span class="pp-fill win" style="width:40%"></span></span><span class="pp-r win">.40</span></div>
-            <div class="pp-row"><span class="pp-tag">ERA alone</span><span class="pp-track"><span class="pp-fill" style="width:25%"></span></span><span class="pp-r">.25</span></div></div>
+            <div class="pp-row"><span class="pp-tag">ERA alone</span><span class="pp-track"><span class="pp-fill" style="width:25%"></span></span><span class="pp-r">.25</span></div>
+            <div class="pp-row"><span class="pp-tag">Stuff+ and ERA</span><span class="pp-track"><span class="pp-fill win" style="width:41%"></span></span><span class="pp-r win">.41</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>K+</b> predicting next-season K%</div>
             <div class="pp-row"><span class="pp-tag">K+</span><span class="pp-track"><span class="pp-fill" style="width:73%"></span></span><span class="pp-r">.73</span></div>
             <div class="pp-row"><span class="pp-tag">K% alone</span><span class="pp-track"><span class="pp-fill" style="width:73%"></span></span><span class="pp-r">.73</span></div>
-            <div class="pp-row"><span class="pp-tag">both combined</span><span class="pp-track"><span class="pp-fill win" style="width:77%"></span></span><span class="pp-r win">.77</span></div></div>
+            <div class="pp-row"><span class="pp-tag">K+ and K%</span><span class="pp-track"><span class="pp-fill win" style="width:77%"></span></span><span class="pp-r win">.77</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>BB+</b> predicting next-season BB%</div>
             <div class="pp-row"><span class="pp-tag">BB+</span><span class="pp-track"><span class="pp-fill win" style="width:58%"></span></span><span class="pp-r win">.58</span></div>
-            <div class="pp-row"><span class="pp-tag">BB% alone</span><span class="pp-track"><span class="pp-fill" style="width:54%"></span></span><span class="pp-r">.54</span></div></div>
+            <div class="pp-row"><span class="pp-tag">BB% alone</span><span class="pp-track"><span class="pp-fill" style="width:54%"></span></span><span class="pp-r">.54</span></div>
+            <div class="pp-row"><span class="pp-tag">BB+ and BB%</span><span class="pp-track"><span class="pp-fill win" style="width:59%"></span></span><span class="pp-r win">.59</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>Whiff+</b> predicting next-season SwStr%</div>
             <div class="pp-row"><span class="pp-tag">Whiff+</span><span class="pp-track"><span class="pp-fill" style="width:75%"></span></span><span class="pp-r">.75</span></div>
             <div class="pp-row"><span class="pp-tag">SwStr% alone</span><span class="pp-track"><span class="pp-fill" style="width:76%"></span></span><span class="pp-r">.76</span></div>
-            <div class="pp-row"><span class="pp-tag">both combined</span><span class="pp-track"><span class="pp-fill win" style="width:79%"></span></span><span class="pp-r win">.79</span></div></div>
+            <div class="pp-row"><span class="pp-tag">Whiff+ and SwStr%</span><span class="pp-track"><span class="pp-fill win" style="width:79%"></span></span><span class="pp-r win">.79</span></div></div>
 
-          <div class="pp"><div class="pp-title"><b>Miss+</b> predicting next-season whiff-per-swing</div>
+          <div class="pp"><div class="pp-title"><b>Miss+</b> predicting next-season Whiff%</div>
             <div class="pp-row"><span class="pp-tag">Miss+</span><span class="pp-track"><span class="pp-fill" style="width:70%"></span></span><span class="pp-r">.70</span></div>
-            <div class="pp-row"><span class="pp-tag">whiff/swing alone</span><span class="pp-track"><span class="pp-fill" style="width:76%"></span></span><span class="pp-r">.76</span></div>
-            <div class="pp-row"><span class="pp-tag">both combined</span><span class="pp-track"><span class="pp-fill win" style="width:77%"></span></span><span class="pp-r win">.77</span></div></div>
+            <div class="pp-row"><span class="pp-tag">Whiff% alone</span><span class="pp-track"><span class="pp-fill" style="width:76%"></span></span><span class="pp-r">.76</span></div>
+            <div class="pp-row"><span class="pp-tag">Miss+ and Whiff%</span><span class="pp-track"><span class="pp-fill win" style="width:77%"></span></span><span class="pp-r win">.77</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>CalledStrike+</b> predicting next-season CS%</div>
             <div class="pp-row"><span class="pp-tag">CalledStrike+</span><span class="pp-track"><span class="pp-fill" style="width:62%"></span></span><span class="pp-r">.62</span></div>
             <div class="pp-row"><span class="pp-tag">CS% alone</span><span class="pp-track"><span class="pp-fill" style="width:65%"></span></span><span class="pp-r">.65</span></div>
-            <div class="pp-row"><span class="pp-tag">both combined</span><span class="pp-track"><span class="pp-fill win" style="width:68%"></span></span><span class="pp-r win">.68</span></div></div>
+            <div class="pp-row"><span class="pp-tag">CalledStrike+ and CS%</span><span class="pp-track"><span class="pp-fill win" style="width:68%"></span></span><span class="pp-r win">.68</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>HardHit+</b> predicting next-season HardHit%</div>
             <div class="pp-row"><span class="pp-tag">HardHit+</span><span class="pp-track"><span class="pp-fill" style="width:40%"></span></span><span class="pp-r">.40</span></div>
             <div class="pp-row"><span class="pp-tag">HardHit% alone</span><span class="pp-track"><span class="pp-fill" style="width:42%"></span></span><span class="pp-r">.42</span></div>
-            <div class="pp-row"><span class="pp-tag">both combined</span><span class="pp-track"><span class="pp-fill win" style="width:48%"></span></span><span class="pp-r win">.48</span></div></div>
+            <div class="pp-row"><span class="pp-tag">HardHit+ and HardHit%</span><span class="pp-track"><span class="pp-fill win" style="width:48%"></span></span><span class="pp-r win">.48</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>Scorched+</b> predicting next-season 105+ rate</div>
             <div class="pp-row"><span class="pp-tag">Scorched+</span><span class="pp-track"><span class="pp-fill win" style="width:41%"></span></span><span class="pp-r win">.41</span></div>
-            <div class="pp-row"><span class="pp-tag">105+ rate alone</span><span class="pp-track"><span class="pp-fill" style="width:26%"></span></span><span class="pp-r">.26</span></div></div>
+            <div class="pp-row"><span class="pp-tag">105+ rate alone</span><span class="pp-track"><span class="pp-fill" style="width:26%"></span></span><span class="pp-r">.26</span></div>
+            <div class="pp-row"><span class="pp-tag">Scorched+ and 105+ rate</span><span class="pp-track"><span class="pp-fill win" style="width:43%"></span></span><span class="pp-r win">.43</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>Soft+</b> predicting next-season Soft%</div>
             <div class="pp-row"><span class="pp-tag">Soft+</span><span class="pp-track"><span class="pp-fill win" style="width:55%"></span></span><span class="pp-r win">.55</span></div>
-            <div class="pp-row"><span class="pp-tag">Soft% alone</span><span class="pp-track"><span class="pp-fill" style="width:53%"></span></span><span class="pp-r">.53</span></div></div>
+            <div class="pp-row"><span class="pp-tag">Soft% alone</span><span class="pp-track"><span class="pp-fill" style="width:53%"></span></span><span class="pp-r">.53</span></div>
+            <div class="pp-row"><span class="pp-tag">Soft+ and Soft%</span><span class="pp-track"><span class="pp-fill win" style="width:60%"></span></span><span class="pp-r win">.60</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>Weak+</b> predicting next-season Weak%</div>
             <div class="pp-row"><span class="pp-tag">Weak+</span><span class="pp-track"><span class="pp-fill win" style="width:56%"></span></span><span class="pp-r win">.56</span></div>
-            <div class="pp-row"><span class="pp-tag">Weak% alone</span><span class="pp-track"><span class="pp-fill" style="width:50%"></span></span><span class="pp-r">.50</span></div></div>
+            <div class="pp-row"><span class="pp-tag">Weak% alone</span><span class="pp-track"><span class="pp-fill" style="width:50%"></span></span><span class="pp-r">.50</span></div>
+            <div class="pp-row"><span class="pp-tag">Weak+ and Weak%</span><span class="pp-track"><span class="pp-fill win" style="width:59%"></span></span><span class="pp-r win">.59</span></div></div>
 
           <div class="pp"><div class="pp-title"><b>GB+</b> predicting next-season GB%</div>
             <div class="pp-row"><span class="pp-tag">GB+</span><span class="pp-track"><span class="pp-fill" style="width:71%"></span></span><span class="pp-r">.71</span></div>
             <div class="pp-row"><span class="pp-tag">GB% alone</span><span class="pp-track"><span class="pp-fill" style="width:74%"></span></span><span class="pp-r">.74</span></div>
-            <div class="pp-row"><span class="pp-tag">both combined</span><span class="pp-track"><span class="pp-fill win" style="width:77%"></span></span><span class="pp-r win">.77</span></div></div>
+            <div class="pp-row"><span class="pp-tag">GB+ and GB%</span><span class="pp-track"><span class="pp-fill win" style="width:77%"></span></span><span class="pp-r win">.77</span></div></div>
 
         </section>
 
