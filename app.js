@@ -574,9 +574,25 @@ function resort() {
     YEAR_ROWS.filter((p) => p.role === role).forEach((p, i) => { RANK_ROLE[p.id] = i + 1; }));
 }
 
+// Baseball Savant-aligned pitch colors, mapped by pitch type (overrides the
+// colors baked into the data so a type is always the conventional color).
+const PITCH_COLORS = {
+  four_seam: '#d22d49',   // red
+  sinker:    '#fe9d00',   // orange
+  cutter:    '#b5654d',   // brown/tan
+  slider:    '#eee716',   // yellow
+  sweeper:   '#ddb33a',   // gold
+  curveball: '#12c2e9',   // cyan/blue
+  changeup:  '#1dbe3a',   // green
+  splitter:  '#3bacac',   // teal
+};
+
 async function loadPitcher(id) {
   if (!pitcherCache[id]) {
-    pitcherCache[id] = await (await fetch(`data/pitchers/${id}.json`, { cache: 'no-cache' })).json();
+    const pd = await (await fetch(`data/pitchers/${id}.json`, { cache: 'no-cache' })).json();
+    for (const y in pd.years)
+      for (const p of pd.years[y].pitches) p.color = PITCH_COLORS[p.cat] || p.color;
+    pitcherCache[id] = pd;
   }
   renderPitcherYear(id);
 }
