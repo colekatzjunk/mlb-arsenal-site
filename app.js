@@ -524,6 +524,7 @@ function updateMetrics(data) {
   const slot = data.arm_slot ? ` · ${data.arm_slot} (${data.arm_angle}°)` : '';
   const roleLabel = role === 'SP' ? 'Starter' : 'Reliever';
   $('p-sub').textContent = `${yr} · ${data.throws}HP · ${roleLabel}${slot} · ${data.pitches.length} pitches · ${data.n.toLocaleString()} thrown`;
+  $('p-note').textContent = (currentYear && +yr !== +currentYear) ? `No ${currentYear} data — showing ${yr}` : '';
 }
 
 // ── Load index + per-year rendering ─────────────────────────────────

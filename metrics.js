@@ -171,6 +171,7 @@ function renderCard() {
   $('mp-name').textContent = d.name;
   const roleLabel = yr.role === 'SP' ? 'Starter' : 'Reliever';
   $('mp-sub').textContent = `${y} · ${d.throws}HP · ${roleLabel} · thru ${yr.date || '—'}`;
+  $('m-note').textContent = (currentYear && +y !== +currentYear) ? `No ${currentYear} data — showing ${y}` : '';
 
   const hv = yr.headline;
   const hpct = headlinePct(yr);

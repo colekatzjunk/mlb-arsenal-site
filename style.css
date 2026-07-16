@@ -148,6 +148,12 @@ b{font-weight:600}
   text-shadow:0 1px 12px #0009}
 #who #p-sub{color:#b9c6d6;font-size:12px;text-shadow:0 1px 8px #000a}
 
+/* "no data for this year" fallback notice */
+.yr-note{display:block;margin-top:5px;width:max-content;max-width:100%;
+  font-size:11px;font-weight:600;color:#e6b455;background:rgba(230,180,85,.12);
+  border:1px solid rgba(230,180,85,.34);border-radius:4px;padding:2px 8px}
+.yr-note:empty{display:none}
+
 /* Segmented controls */
 .segmented{display:inline-flex;pointer-events:auto;border:1px solid var(--line-2);
   border-radius:5px;overflow:hidden;background:var(--panel-2)}
