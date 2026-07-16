@@ -386,6 +386,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .def-tbl tbody tr:last-child th,.def-tbl tbody tr:last-child td{border-bottom:none}
 .def-tbl tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
 .def-tbl td b{color:var(--ink);font-weight:700}
+.def-tbl .tldr{margin-top:10px;padding-top:9px;border-top:1px dashed var(--line-2);
+  font-size:13px;line-height:1.5;color:var(--ink)}
+.def-tbl .tldr b{color:var(--red);font-weight:800;font-size:11px;
+  letter-spacing:.5px;margin-right:2px}
 .guide-note{margin:18px 2px 0;padding-left:14px;border-left:3px solid var(--line-2);
   font-size:13.5px;line-height:1.65;color:var(--muted)}
 .guide-note b{color:var(--ink);font-weight:700}
