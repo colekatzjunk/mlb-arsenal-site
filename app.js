@@ -574,9 +574,9 @@ let roleFilter = 'SP';   // default view: starting pitchers
 
 // Sortable leaderboard metrics. dir: -1 = high→low (best-first default), +1 = low→high.
 const SORTS = [
-  { key: 'late_divergence', label: 'Late divergence',  col: 'LD',  dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
-  { key: 'tunnel_spread',   label: 'Tunnel spread',    col: 'Tun', dir: +1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
-  { key: 'entropy',         label: 'Arsenal entropy',  col: 'Ent', dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
+  { key: 'late_divergence', label: 'Late Divergence',  col: 'LD',  dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
+  { key: 'tunnel_spread',   label: 'Tunnel Spread',    col: 'Tun', dir: +1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
+  { key: 'entropy',         label: 'Arsenal Entropy',  col: 'Ent', dir: -1, fmt: (v) => `<b>${v.toFixed(2)}</b>` },
 ];
 let sortKey = 'late_divergence';
 let sortDir = -1;
