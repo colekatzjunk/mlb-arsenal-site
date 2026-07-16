@@ -427,11 +427,12 @@ const VIEWS = {
   ump: { pos: [0, 5.2, -9], tgt: [0, 3.0, 40], fov: 54 },
   // Side: off the third-base line looking across the flight path, shows vertical
   // break and how the pitches split up/down from the tunnel point to the plate.
-  side: { pos: [-56, 4, 25], tgt: [0, 3.6, 24], fov: 34 },
+  side: { pos: [-54, 4, 8], tgt: [0, 3.6, 24], fov: 34 },
 };
-// Vertical fov that keeps ~34 ft of flight in frame on each side of the target, so the
+// Vertical fov that keeps ~27 ft of flight in frame on each side of the target, so the
 // full release→plate path fits on any aspect ratio (crucial on narrow phone screens).
-const sideFov = (aspect) => 2 * Math.atan((34 / 56) / aspect) * 180 / Math.PI;
+const SIDE_DIST = 56;
+const sideFov = (aspect) => 2 * Math.atan((27 / SIDE_DIST) / aspect) * 180 / Math.PI;
 
 function setView(name) {
   const v = VIEWS[name]; if (!v) return;
