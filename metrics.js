@@ -11,7 +11,7 @@ let roleFilter = 'SP';
 let RANK = {};
 const cache = {};          // id -> full nested pitcher file
 
-const LABELS = { csplus: 'CalledStrike+', barrel95plus: 'Scorched+' };
+const LABELS = { csplus: 'CalledStrike+', barrel95plus: 'Scorched+', whiffplus: 'SwStr+', missplus: 'Whiff+' };
 const labelOf = (m) => LABELS[m.key] || m.label;
 
 // Sortable leaderboard metrics (all "higher is better" -> default high→low).
@@ -20,8 +20,8 @@ const SORTS = [
   { key: 'stuffplus', label: 'Stuff+', col: 'Stf' },
   { key: 'kplus', label: 'K+', col: 'K+' },
   { key: 'bbplus', label: 'BB+', col: 'BB+' },
-  { key: 'whiffplus', label: 'Whiff+', col: 'Whf' },
-  { key: 'missplus', label: 'Miss+', col: 'Mis' },
+  { key: 'whiffplus', label: 'SwStr+', col: 'SwS' },
+  { key: 'missplus', label: 'Whiff+', col: 'Whf' },
   { key: 'csplus', label: 'CalledStrike+', col: 'CS+' },
   { key: 'hardhitplus', label: 'HardHit+', col: 'HH+' },
   { key: 'barrel95plus', label: 'Scorched+', col: 'Scr' },
@@ -43,16 +43,16 @@ const GROUP_LABELS = {
 const DESC = {
   pplus: "A pitcher's overall pitch quality, where 100 is average.",
   stuffplus: "The raw quality of a pitcher's pitches, regardless of location.",
-  kplus: "A pitch's expected contribution to strikeout probability, as opposed to run value.",
-  bbplus: "A pitch's expected contribution to walk probability. A higher BB+ value indicates better walk prevention ability.",
-  whiffplus: "The likelihood a pitch induces a swing and miss.",
-  missplus: "Given a swing, the likelihood the pitch is missed.",
-  csplus: "The likelihood a pitch is taken and called a strike by the umpire.",
-  hardhitplus: "How well a pitch suppresses exit velocities of 95+ mph on balls in play.",
-  barrel95plus: "How well a pitch suppresses exit velocities of 105+ mph on balls in play.",
-  softplus: "The likelihood a pitch induces an exit velocity of 80 mph or less on balls in play.",
-  weakplus: "The likelihood a pitch induces an exit velocity of 75 mph or less on balls in play.",
-  gbplus: "The likelihood a pitch induces a launch angle below 10 degrees on balls in play.",
+  kplus: "A pitcher's ability to generate strikeouts.",
+  bbplus: "A pitcher's ability to prevent walks. A higher BB+ indicates better walk prevention.",
+  whiffplus: "A pitcher's ability to generate swings and misses.",
+  missplus: "A pitcher's ability to make hitters miss when they swing.",
+  csplus: "A pitcher's ability to earn called strikes on pitches the hitter takes.",
+  hardhitplus: "A pitcher's ability to suppress hard contact (95+ mph exit velocity).",
+  barrel95plus: "A pitcher's ability to suppress scorched contact (105+ mph exit velocity).",
+  softplus: "A pitcher's ability to induce soft contact (80 mph or less exit velocity).",
+  weakplus: "A pitcher's ability to induce weak contact (75 mph or less exit velocity).",
+  gbplus: "A pitcher's ability to induce ground balls (launch angle below 10 degrees).",
 };
 
 const HIDE = new Set([
