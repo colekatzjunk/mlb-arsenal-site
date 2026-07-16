@@ -214,11 +214,11 @@
             <tbody>
               <tr>
                 <th>Pitching+</th>
-                <td>Every pitch thrown is graded by a chain of models predicting swing probability, whiff/foul/in-play probability, called-strike probability, and the outcome of balls put in play (single, double, out, etc.). Inputs to these models include the pitch's physical characteristics, its deception relative to the rest of the pitcher's arsenal, its location, and context such as the count and batter handedness. Weighted toward his most recent pitches, these grades are averaged and scaled so that 100 is league average and higher is better.<div class="tldr"><b>TLDR:</b> a pitcher's overall pitch quality, where 100 is average.</div></td>
+                <td>Every pitch thrown is graded by a chain of models predicting swing probability, whiff/foul/in-play probability, called-strike probability, and the outcome of balls put in play (single, double, out, etc.), which combine into an expected run value for the pitch. Inputs to these models include the pitch's physical characteristics, its deception relative to the rest of the pitcher's arsenal, its location, and context such as the count and batter handedness. Weighted toward his most recent pitches, these run-value grades are averaged and scaled so that 100 is league average and higher is better.<div class="tldr"><b>TLDR:</b> a pitcher's overall pitch quality, where 100 is average.</div></td>
               </tr>
               <tr>
                 <th>Stuff+</th>
-                <td>Stuff+ uses the same sequence of models as Pitching+ (swing decision, swing result, etc.) but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div></td>
+                <td>Stuff+ grades each pitch's expected run value through the same sequence of models as Pitching+ (swing decision, swing result, etc.), but strips out context and location to isolate the &ldquo;nastiness&rdquo; of the pitch itself.<div class="tldr"><b>TLDR:</b> the raw quality of a pitcher's pitches, regardless of location.</div></td>
               </tr>
             </tbody>
           </table>

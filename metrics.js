@@ -24,7 +24,6 @@ const SORTS = [
   { key: 'missplus', label: 'Miss+', col: 'Mis' },
   { key: 'csplus', label: 'CalledStrike+', col: 'CS+' },
   { key: 'hardhitplus', label: 'HardHit+', col: 'HH+' },
-  { key: 'veryhardhitplus', label: 'VeryHardHit+', col: 'VHH' },
   { key: 'barrel95plus', label: 'Scorched+', col: 'Scr' },
   { key: 'softplus', label: 'Soft+', col: 'Sft' },
   { key: 'weakplus', label: 'Weak+', col: 'Wk+' },
@@ -50,7 +49,6 @@ const DESC = {
   missplus: "When hitters swing, how often they're expected to miss: the pitcher's pure projected bat-missing ability.",
   csplus: "How well the pitcher is expected to steal called strikes that hitters are projected to take.",
   hardhitplus: "How well the pitcher is expected to suppress hard contact (95+ mph exit velocity).",
-  veryhardhitplus: "How well the pitcher is expected to suppress crushed contact (100+ mph exit velocity).",
   barrel95plus: "How well the pitcher is expected to suppress scorched contact (105+ mph exit velocity).",
   softplus: "How much soft contact (≤80 mph exit velocity) the pitcher is expected to induce.",
   weakplus: "How much very weak contact (≤75 mph exit velocity) the pitcher is expected to induce.",
@@ -62,6 +60,7 @@ const HIDE = new Set([
   'ldplus', 'fbplus', 'puplus',
   'epullplus', 'pullplus', 'centerplus', 'oppoplus', 'eoppoplus',
   'hrplus', 'bipplus',
+  'veryhardhitplus',   // dropped: redundant with HardHit+ (95+) and Scorched+ (105+)
 ]);
 
 function ordinal(n) {
