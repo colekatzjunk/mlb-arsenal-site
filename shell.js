@@ -17,7 +17,9 @@ function showTab(tab) {
   document.querySelectorAll('.workspace').forEach((w) =>
     w.classList.toggle('on', w.id === `tab-${tab}`));
 
-  const api = tab === 'tunnels' ? window.ArsenalTunnels : window.ArsenalMetrics;
+  const api = tab === 'tunnels' ? window.ArsenalTunnels
+            : tab === 'metrics' ? window.ArsenalMetrics
+            : null;   // Guide is static content — no data bridge.
   if (!api) return;
   // The tunnel WebGL canvas was 0-sized while hidden — refit on reveal.
   if (tab === 'tunnels' && api.resize) requestAnimationFrame(api.resize);
@@ -84,4 +86,6 @@ syncDefault();
 if (location.hash === '#metrics') {
   const tryOpen = () => window.ArsenalMetrics ? showTab('metrics') : setTimeout(tryOpen, 60);
   tryOpen();
+} else if (location.hash === '#guide') {
+  showTab('guide');
 }
