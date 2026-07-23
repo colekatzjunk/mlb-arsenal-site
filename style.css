@@ -469,9 +469,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   #m-card{padding:4px 14px 40px}
   .m-hero .hn{font-size:44px}
   .m-hero{gap:14px;margin:4px 0 18px;padding-bottom:16px}
-  .m-legend,.m-row{grid-template-columns:84px minmax(0,1fr);gap:9px}
+  .m-legend,.m-row{grid-template-columns:78px minmax(0,1fr) 34px;gap:8px}
   .m-row .lab{font-size:11px}
-  .m-row .val{display:none}
+  .m-row .val{font-size:12px}
 
   /* Guide: full-width reading column, let the page scroll */
   #guide{overflow:visible;height:auto}
