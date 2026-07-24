@@ -480,3 +480,74 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   .def-tbl tbody th{white-space:normal;width:34%;padding:12px;font-size:13px}
   .def-tbl tbody td{padding:12px;font-size:13px}
 }
+
+/* ── Teams tab (unlisted, ?teams=1) ──────────────────── */
+/* Reuses global .m-hero/.m-group/.m-row/.m-bar/.m-legend classes. */
+#t-sidebar{
+  background:var(--panel); border-right:1px solid var(--line);
+  display:flex; flex-direction:column; padding:16px 14px; gap:12px; min-height:0;
+}
+#t-sidebar h2{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--muted);margin:0;font-weight:700;
+  display:flex;justify-content:space-between;align-items:baseline}
+#t-sidebar h2 .sub{color:var(--dim);font-weight:600;letter-spacing:.1em}
+.t-list-head{display:grid;grid-template-columns:22px 1fr auto auto;gap:8px;
+  font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);
+  padding:0 8px 6px;border-bottom:1px solid var(--line);font-weight:700}
+.t-list-head .r{text-align:right}
+#t-list{list-style:none;margin:0;padding:0;overflow-y:auto;min-height:0;flex:1 1 auto}
+#t-list li{display:grid;grid-template-columns:22px 1fr auto auto;gap:8px;align-items:baseline;
+  padding:7px 8px;cursor:pointer;border-bottom:1px solid #161c26}
+#t-list li:hover{background:#141b26}
+#t-list li.sel{background:#15202e;box-shadow:inset 2px 0 0 var(--red)}
+#t-list li .rk{color:var(--dim);font-size:11px;font-variant-numeric:tabular-nums}
+#t-list li .rk.top{color:var(--ink);font-weight:700}
+#t-list li .nm{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#t-list li .rec{color:var(--dim);font-size:11px;text-align:right;font-variant-numeric:tabular-nums}
+#t-list li .dc{text-align:right;font-size:12.5px;font-weight:700;
+  font-variant-numeric:tabular-nums;min-width:38px}
+#t-stage{position:relative;min-width:0;overflow-y:auto;background:var(--bg)}
+#t-card{padding:14px 26px 48px;max-width:940px;margin:0 auto}
+#t-card .m-hero .hrec{margin-left:auto;text-align:right;display:flex;flex-direction:column;
+  gap:3px;padding-bottom:5px}
+#t-card .m-hero .hrec .rv{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+#t-card .m-hero .hrec .rl{font-size:10px;text-transform:uppercase;letter-spacing:.13em;
+  color:var(--dim);font-weight:700}
+#t-card .gap-note{font-size:11.5px;color:var(--muted);margin:10px 0 0}
+#t-card .gap-note b{color:var(--ink)}
+.t-roster{width:100%;border-collapse:collapse;margin:4px 0 6px;font-size:12px}
+.t-roster th{font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);
+  font-weight:700;text-align:right;padding:4px 8px;border-bottom:1px solid var(--line)}
+.t-roster th:first-child{text-align:left}
+.t-roster td{padding:5px 8px;border-bottom:1px solid #161c26;text-align:right;
+  color:var(--muted);font-variant-numeric:tabular-nums}
+.t-roster td:first-child{text-align:left;color:var(--ink);font-weight:600}
+.t-roster td:nth-child(2){text-align:left;color:var(--ink);font-weight:600}
+.t-roster td b{color:var(--ink);font-weight:700}
+.t-roster tr:hover td{background:#121926}
+#t-card .foot{color:var(--dim);font-size:11px;line-height:1.6;border-top:1px solid var(--line);
+  margin-top:28px;padding-top:12px}
+#t-card .foot b{color:var(--muted)}
+#t-card .tbl-wrap{overflow-x:auto}
+@media(max-width:760px){
+  #t-sidebar{position:fixed;top:0;left:0;bottom:0;width:min(84%,320px);z-index:60;
+    transform:translateX(-105%);transition:transform .18s}
+  #t-card{padding:10px 14px 40px}
+}
+
+/* What-if controls */
+.wx{width:24px;height:24px;background:var(--panel-2);border:1px solid var(--line-2);
+  border-radius:4px;color:var(--muted);cursor:pointer;font-size:13px;line-height:1;padding:0}
+.wx:hover{border-color:var(--red);color:#fff}
+.wx.undo{color:#e2a13b}
+.wx.undo:hover{border-color:#e2a13b}
+.wadd-row td{padding:6px 8px !important;border-bottom:none !important;text-align:left !important;
+  background:transparent !important}
+.wadd-row{opacity:.55;transition:opacity .12s}
+.wadd-row:hover,.wadd-row:focus-within{opacity:1}
+.wadd-plus{display:inline-flex;width:18px;height:18px;border-radius:50%;background:var(--panel-2);
+  border:1px solid var(--line-2);color:var(--muted);font-size:12px;font-weight:700;
+  align-items:center;justify-content:center;vertical-align:middle;margin-right:8px}
+.wadd-lab{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#5c6b7e;
+  font-weight:700;margin-right:10px;vertical-align:middle}
+.wadd-sel{display:inline-block;vertical-align:middle;margin-right:6px;padding:4px 6px;font-size:11.5px}

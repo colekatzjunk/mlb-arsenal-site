@@ -21,6 +21,8 @@
       <button data-tab="tunnels" class="on">Pitcher Arsenal</button>
       <button data-tab="metrics">Model Grades</button>
       <button data-tab="guide">Glossary</button>
+      <!-- Teams tab is unlisted: revealed by teams.js only with ?teams=1 -->
+      <button data-tab="teams" id="teams-tab-btn" hidden>Teams</button>
     </nav>
     <div class="mast-meta">
       <span class="yr-label">Season</span>
@@ -84,7 +86,7 @@
 
       <section id="metrics">
         <button id="card-hide" class="card-x" title="Hide">×</button>
-        <div class="pct-cap" id="m-pctcap">PERCENTILE RANK</div>
+        <div class="pct-cap" id="m-pctcap">DECEPTION ABILITY</div>
         <div class="card-leg"><span class="poor">POOR</span><span class="avg">AVERAGE</span><span class="great">GREAT</span></div>
 
         <div class="dm-list">
@@ -273,6 +275,29 @@
 
   <div id="drawer-backdrop"></div>
 
+  <!-- ══ TEAMS TAB (unlisted; ?teams=1) ═════════════════════════════ -->
+  <div id="tab-teams" class="workspace">
+    <aside id="t-sidebar">
+      <h2>Teams <span class="sub" id="t-count"></span></h2>
+      <div class="sort-row">
+        <span class="sort-lab">Sort</span>
+        <select class="sortsel" id="t-sortsel">
+          <option value="power_grade">Power grade</option>
+          <option value="bat_grade">Batting</option>
+          <option value="sp_grade">Rotation</option>
+          <option value="bp_grade">Bullpen</option>
+          <option value="def_grade">Defense</option>
+          <option value="br_grade">Baserunning</option>
+          <option value="winpct">Win %</option>
+          <option value="gap">Grade vs record gap</option>
+        </select>
+      </div>
+      <div class="t-list-head"><span></span><span>Team</span><span class="r">Rec</span><span class="r">Val</span></div>
+      <ul id="t-list"></ul>
+    </aside>
+    <main id="t-stage"><div id="t-card"></div></main>
+  </div>
+
 </div>
 
 <script type="importmap">
@@ -286,5 +311,6 @@
 <script type="module" src="app.js"></script>
 <script type="module" src="metrics.js"></script>
 <script type="module" src="shell.js"></script>
+<script type="module" src="teams.js"></script>
 </body>
 </html>
