@@ -545,7 +545,7 @@ function updateMetrics(data) {
     $('m-tunnelbar').innerHTML = pctBar(100 - poolPct('tunnel_spread', m.tunnel_spread, role, yr));
     $('m-velospreadbar').innerHTML = pctBar(poolPct('velo_spread', m.velo_spread, role, yr));
     $('m-entbar').innerHTML = pctBar(poolPct('entropy', m.entropy, role, yr));
-    $('m-pctcap').textContent = `Deception Ability · ${role === 'SP' ? 'Starters' : 'Bullpen'} · ${yr}`;
+    $('m-pctcap').innerHTML = `Deception Ability<span class="cap-meta">${role === 'SP' ? 'Starters' : 'Bullpen'} · ${yr}</span>`;
   }
 
   $('p-name').textContent = data.name;
